@@ -1,5 +1,5 @@
 // @use 'ColorStyles' as *;
-
+@import "grid.scss";
 // @import 'normalize.css';
 // @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -8,12 +8,17 @@
     --bg-primary: #ffffff;
     --bg-secondary: #603809;
 
-    --cl-primary: #ea6a12;
+    --cl-primary: #ee4d2d;
     --cl-secondary: #f8c51b;
     --cl-favorite: #ff4848;
     --cl-hightlight: #1458dd;
 
-    --text-color: #252c32;
+    --primary-color: #f81919;
+    --text-color: #333;
+    --white-color: #fff;
+
+    --header-height: 86px;
+    --navbar-height: 34px;
 }
 
 * {

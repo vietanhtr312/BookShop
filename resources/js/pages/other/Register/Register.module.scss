@@ -1,5 +1,5 @@
 .register_page {
-    height: 2000px;
+    height: calc(100vh - calc((--header-height) + 10px));
     background-color: rgb(238, 77, 45);
 }
 
@@ -26,9 +26,10 @@
 .titleContainer {
     display: flex;
     flex-direction: column;
-    font-size: 34px;
+    font-size: 26px;
     font-weight: 500;
-    align-items: center;
+    padding-left: 18px;
+    margin-bottom: 10px;
     justify-content: center;
 }
 
@@ -38,6 +39,7 @@
     align-items: flex-start;
     justify-content: center;
     gap: 15px;
+    padding: 0 12px;
 
     label {
         margin-bottom: 8px;
@@ -49,22 +51,7 @@
     font-size: 12px;
 }
 
-.inputBox {
-    height: 40px;
-    width: 340px;
-    font-size: 16px;
-    border-radius: 2px;
-    border: 1px solid grey;
-    padding-left: 12px;
-}
-
-input[type='button'] {
-    border: none;
-    width: 200px;
-    padding: 12px 24px;
-    margin: 8px auto;
-    font-size: 16px;
-    text-transform: uppercase;
-    border-radius: 8px;
-    cursor: pointer;
+.buttonContainer {
+    margin-top: 10px;
+    padding: 0 12px;
 }

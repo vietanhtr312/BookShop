@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 
 import { CustomInput, PasswordInput } from '~/components/Input';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -47,7 +48,6 @@ const Register = () => {
                         <div className={cx('inputContainer')}>
                             <CustomInput
                                 id="username"
-                                large
                                 required
                                 label="Tên đăng nhập"
                                 width="100%"
@@ -56,7 +56,6 @@ const Register = () => {
                             ></CustomInput>
                             <CustomInput
                                 id="email"
-                                large
                                 required
                                 label="Email"
                                 width="100%"
@@ -65,7 +64,6 @@ const Register = () => {
                             ></CustomInput>
                             <PasswordInput
                                 id="password"
-                                large
                                 required
                                 label="Mật khẩu"
                                 width="100%"
@@ -74,7 +72,6 @@ const Register = () => {
                             ></PasswordInput>
                             <PasswordInput
                                 id="confirmPassword"
-                                large
                                 required
                                 label="Xác nhận mật khẩu"
                                 width="100%"
@@ -83,8 +80,8 @@ const Register = () => {
                             ></PasswordInput>
                         </div>
                         <br />
-                        <div className={cx('inputContainer')}>
-                            <input className={cx('btn btn--primary')} type="button" onClick={onButtonClick} value={'Đăng ký'} />
+                        <div className={cx('buttonContainer')}>
+                            <Button onClick={onButtonClick} primary width='100%' large>ĐĂNG KÝ </Button>
                         </div>
                     </div>
                 </div>

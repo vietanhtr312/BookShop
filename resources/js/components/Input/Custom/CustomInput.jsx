@@ -22,7 +22,7 @@ const CustomInput = ({
 
     return (
         <div className={cx('custom-input', { small, medium, large })} style={{ width: width }}>
-            <input id={`custom-input-${id}`} type={type} value={value} onChange={handleChangeValue} placeholder=" " />
+            <input id={`custom-input-${id}`} type={type} value={value} onChange={handleChangeValue} placeholder=" " autoComplete='none'/>
             <label htmlFor={`custom-input-${id}`}>
                 {label}
                 {required && <span className={cx('required-note')}>*</span>}

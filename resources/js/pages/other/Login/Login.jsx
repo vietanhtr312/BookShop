@@ -4,6 +4,8 @@ import styles from './Login.module.scss';
 import { useState, useNavigate } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
+import { CustomInput, PasswordInput } from '~/components/Input';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -41,30 +43,26 @@ const Login = () => {
                         </div>
                         <br />
                         <div className={cx('inputContainer')}>
-                            <label>Email</label>
-                            <input
+                            <CustomInput
+                                id="email"
+                                required
+                                label="Email"
+                                width="100%"
                                 value={email}
-                                placeholder="Nhập email của bạn"
-                                onChange={(ev) => setEmail(ev.target.value)}
-                                className={cx('inputBox')}
-                            />
-                            <label className={cx('errorLabel')}>{emailError}</label>
+                                setValue={setEmail}
+                            ></CustomInput>
+                            <PasswordInput
+                                id="password"
+                                required
+                                label="Mật khẩu"
+                                width="100%"
+                                password={password}
+                                setPassword={setPassword}
+                            ></PasswordInput>
                         </div>
                         <br />
-                        <div className={cx('inputContainer')}>
-                            <label>Mật khẩu</label>
-                            <input
-                                value={password}
-                                placeholder="Nhập mật khẩu của bạn"
-                                onChange={(ev) => setPassword(ev.target.value)}
-                                className={cx('inputBox')}
-                                type='password'
-                            />
-                            <label className={cx('errorLabel')}>{passwordError}</label>
-                        </div>
-                        <br />
-                        <div className={cx('inputContainer')}>
-                            <input className={cx('btn btn--primary')} type="button" onClick={onButtonClick} value={'Đăng nhập'} />
+                        <div className={cx('buttonContainer')}>
+                            <Button onClick={onButtonClick} primary width='100%' large>ĐĂNG NHẬP </Button>
                         </div>
                     </div>
                 </div>

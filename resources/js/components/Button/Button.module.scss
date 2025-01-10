@@ -4,15 +4,11 @@
     justify-content: center;
     gap: 10px;
     font-weight: 600;
-    color: var(--text-color);
-    border-radius: 10px;
+    color: white;
+    border-radius: 2px;
     cursor: pointer;
     user-select: none;
     @extend .medium;
-
-    &.shadow {
-        box-shadow: 0px 4px 4px 0px #00000040;
-    }
 
     &.disabled {
         opacity: 0.5;
@@ -55,7 +51,7 @@
 // Type
 .text {
     background-color: transparent;
-    color: var(--text-color);
+    color: white;
     text-decoration: underline;
 
     &:hover,
@@ -66,11 +62,11 @@
 
 .primary {
     background-color: var(--cl-primary);
-    color: var(--text-color);
+    color: white;
 
     &:hover,
     &.active {
-        background-color: var(--cl-secondary);
+        opacity: 0.91;
     }
 }
 
@@ -107,8 +103,8 @@
 
 .large {
     padding: 12px 24px;
-    border-radius: 15px 0;
-    font-size: 1.8rem;
+    font-size: 16px;
+    font-weight: 500;
     border-width: 2px;
 }
 

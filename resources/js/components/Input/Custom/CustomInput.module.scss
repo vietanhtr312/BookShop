@@ -1,12 +1,11 @@
 .custom-input {
-    --padding: 20px;
+    --padding: 14px;
     position: relative;
     min-width: 100px;
     background-color: transparent;
-    border-radius: 999px;
-    border: 1px solid var(--text-color);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 2px var(--padding);
-    box-shadow: 5px 5px 5px 0px #00000040;
 
     .required-note {
         color: var(--cl-favorite);
@@ -24,6 +23,10 @@
     &.large input {
         padding: 15px 0;
     }
+
+    &.active {
+        border: 1px solid var(--cl-hightlight);
+    }
 }
 
 .custom-input label {
@@ -33,6 +36,7 @@
     padding: 0 3px;
     transform: translateY(-50%);
     font-weight: 500;
+    color: var(--text-color);
     transition: top 0.2s ease, transform 0.2s ease, font-size 0.2s ease, background-color 0.2s ease;
 }
 
@@ -43,14 +47,12 @@
     font-size: var(--font-size);
 }
 
+.custom-input:focus-within {
+    border: 1px solid black;
+}
+
 .label-active {
-    top: 0;
-    transform: translateY(-50%);
-    font-size: calc(var(--font-size) - 2px);
-    font-weight: 400;
-    background-color: var(--bg-primary);
-    text-shadow: 0 0 0px #ffff33, 0 0 1px #ffff33, 0 0 2px #ffff33, 0 0 3px #ffff33, 0 0 4px #ffff33, 0 0 5px #ffff33,
-        0 0 6px #ffff33, 0 0 7px #ffff33;
+    display: none;
 }
 
 .custom-input input:not(:placeholder-shown) + label {

@@ -1,0 +1,32 @@
+.wrapper {
+    height: 86px;
+    align-items: center;
+    display: flex;
+
+    .logo {
+        display: flex;
+
+        a {
+            position: relative;
+            margin: 0 12px;
+
+            &::after {
+                content: "";
+                position: absolute;
+                height: 28px;
+                border: 0.1px solid var(--primary-color);
+                right: -20px;
+                top: 18px;
+            }
+        }
+
+        img {
+            width: 150px;
+        }
+    }
+}
+
+.name {
+    font-size: 18px;
+    margin: 20px 24px 0;
+}
