@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class ProductController extends Controller
 {
@@ -12,6 +15,45 @@ class ProductController extends Controller
     public function __construct(ProductService $productService)
     {
         $this->productService = $productService;
+    }
+
+    public function createProduct(ProductRequest $request)
+    {
+        $validatedData = $request->validated();
+
+        $product = $this->productService->createProduct($validatedData);
+
+        return response()->json([
+            'message' => 'Sản phẩm đã được tạo thành công!',
+            'product' => $product,
+        ], 201);
+    }
+
+    public function updateProduct(ProductRequest $request, $id)
+    {
+        $product = Product::find($id);
+        try {
+            $validatedData = $request->validated();
+        } catch (ValidationException $e) {
+            return response()->json(['message' => $e->errors()], 422);
+        }
+        
+
+        $updatedProduct = $this->productService->updateProduct( $product, $validatedData );
+        
+        return response()->json([
+            'message' => 'Đã cập nhật thành công sản phẩm',
+            'product' => $updatedProduct
+        ], 200);
+    }
+
+    public function deleteProduct($id)
+    {
+      $this->productService->deleteProduct($id);
+
+      return response()->json([
+        'message' => 'Đã xóa thành công sản phẩm'
+      ], 200);
     }
 
     public function getProducts(Request $request) {

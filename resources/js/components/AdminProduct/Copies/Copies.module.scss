@@ -1,0 +1,58 @@
+.copies {
+    --copy-length: 30px;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .copy-btn {
+        position: relative;
+        min-width: max-content;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: var(--font-normal);
+        cursor: pointer;
+
+        .required {
+            color: var(--error-color);
+        }
+    }
+
+    .copies-table {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 7px;
+        padding: 10px;
+        background-color: var(--text-secondary);
+        border-radius: 12px 0;
+        border: 2px solid var(--secondary);
+        z-index: 5;
+    }
+
+    .copy-option {
+        display: flex;
+        width: var(--copy-length);
+        height: var(--copy-length);
+        font-size: 12px;
+    }
+
+    .copy-name {
+        font-weight: var(--font-normal);
+        cursor: default;
+    }
+
+    &.error {
+        color: var(--error-color);
+    }
+}
+
+.copy-error {
+    color: var(--error-color);
+    font-size: calc(var(--font-size) - 2px);
+}

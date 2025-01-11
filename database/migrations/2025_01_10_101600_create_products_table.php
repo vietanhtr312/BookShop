@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->longText('intro')->nullable();
             $table->longText('detail')->nullable();
-            $table->longText('preserve')->nullable();
             $table->boolean('new')->default(true);
             $table->boolean('hot')->default(false);
             $table->string('sale')->nullable();

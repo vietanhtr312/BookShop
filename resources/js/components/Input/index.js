@@ -1,5 +1,6 @@
 import PasswordInput from './Password';
 import DefaultInput from './Default';
 import CustomInput from './Custom';
+import Input from './Input';
 
-export { PasswordInput, DefaultInput, CustomInput };
+export { Input, PasswordInput, DefaultInput, CustomInput };

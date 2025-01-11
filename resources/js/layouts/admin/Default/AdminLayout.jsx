@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 
 const AdminLayout = ({ children }) => {
     return (
-        <div className={cx('admin-layout')}>
+        <div className={cx('admin-layout', 'grid wide')}>
             {/* <Header /> */}
             {children}
             {/* <Footer /> */}

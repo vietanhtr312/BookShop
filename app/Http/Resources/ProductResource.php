@@ -17,7 +17,6 @@ class ProductResource extends JsonResource
         'price' => $this->price,
         'sold_quantity' => $this->sold_quantity,
         'avatar' => $this->avatar,
-        'images' => json_decode($this->images, true),
         'intro' => $this->intro ?? "",
         'detail' => $this->detail ?? "",
         'hot' => $this->hot,

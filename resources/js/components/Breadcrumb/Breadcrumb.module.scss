@@ -1,0 +1,23 @@
+.breadcrumb {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.breadcrumb-item {
+    padding: 5px 10px;
+    background-color: transparent;
+    color: var(--text-primary);
+    font-weight: 600;
+
+    &:hover {
+        color: var(--secondary);
+        text-decoration: underline;
+    }
+
+    &.active {
+        color: var(--secondary);
+        text-decoration: none;
+        pointer-events: none;
+    }
+}

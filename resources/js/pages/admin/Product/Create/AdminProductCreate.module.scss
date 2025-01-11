@@ -1,0 +1,16 @@
+.admin-product-create {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+// Step
+.step-content {
+    width: 100%;
+    padding-top: 10px;
+    flex: 1;
+}

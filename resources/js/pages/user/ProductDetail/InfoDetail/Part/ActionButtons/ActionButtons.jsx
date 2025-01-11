@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 
 import styles from './ActionButtons.module.scss';
-import Button from '~/components/Button';
+import {Button} from '~/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 

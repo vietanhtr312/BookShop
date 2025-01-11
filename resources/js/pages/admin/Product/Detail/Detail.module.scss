@@ -1,0 +1,27 @@
+.product-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-title {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 25px;
+}
+
+.variant-title {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid var(--secondary-25);
+}
+
+.variants {
+    display: flex;
+}
+
+.action-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

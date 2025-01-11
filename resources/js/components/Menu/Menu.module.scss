@@ -1,0 +1,82 @@
+.menu {
+    min-width: 200px;
+    max-width: var(--menu-max-width);
+    max-height: var(--menu-max-height);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-menu);
+    background-color: var(--background);
+    border-radius: var(--menu-border-radius);
+    overflow-y: overlay;
+}
+
+// Header
+.header {
+    width: 100%;
+    height: calc(var(--header-height) - 10px);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+
+.back-btn {
+    width: calc(var(--header-height) - 10px);
+    height: calc(var(--header-height) - 10px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(var(--font-size) * 1.2);
+    background-color: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--secondary-50);
+    }
+}
+
+.title {
+    width: 100%;
+    padding: 0 50px;
+    text-align: center;
+    font-weight: 700;
+    font-size: calc(var(--font-size) + 1px);
+    color: var(--text-primary);
+}
+
+// Body
+.menu-body {
+    width: 100%;
+    max-height: calc(100vh - var(--header-height) * 3);
+    display: flex;
+    flex-direction: column;
+    overflow-y: overlay;
+
+    .menu-item {
+        margin: 0;
+    }
+}
+
+// MenuItem
+.menu-item {
+    width: 100%;
+    border-radius: 0;
+    font-weight: 500;
+    display: flex;
+    justify-content: start;
+    color: var(--text-primary);
+
+    &:hover {
+        background-color: var(--hover-item);
+    }
+}
+
+.children {
+    width: 100%;
+    height: 100%;
+}

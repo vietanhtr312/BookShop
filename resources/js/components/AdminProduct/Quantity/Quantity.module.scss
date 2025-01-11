@@ -1,0 +1,8 @@
+.quantity {
+    width: 100%;
+    display: flex;
+    gap: var(--gap);
+    & > * {
+        width: 20%;
+    }
+}

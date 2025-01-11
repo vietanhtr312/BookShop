@@ -9,7 +9,10 @@ const publicRoutes = [
     { path: config.routes.other.register, component: pages.other.register, layout: layouts.other.noHeader },
 
     { path: config.routes.user.productList, component: pages.user.Products, layout: layouts.user.default },
-    { path: config.routes.user.productDetail, component: pages.user.ProductDetail, layout: layouts.user.default }
+    { path: config.routes.user.productDetail, component: pages.user.ProductDetail, layout: layouts.user.default },
+
+    { path: config.routes.admin.productList, component: pages.admin.AdminProductList, layout: layouts.admin.default },
+    { path: config.routes.admin.productCreate, component: pages.admin.AdminProductCreate, layout: layouts.admin.default },
 ];
 
 const privateRoutes = [

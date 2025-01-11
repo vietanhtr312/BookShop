@@ -1,0 +1,111 @@
+.radio-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.title {
+    font-weight: var(--font-normal);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    gap: 5px;
+}
+
+.option {
+    display: flex;
+}
+
+.content {
+    width: 100%;
+}
+
+// RadioInput
+.radio-input {
+    --circle-width: 15px;
+    width: fit-content;
+
+    label {
+        position: relative;
+        padding-left: calc(var(--circle-width) + 5px);
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        font-weight: var(--font-normal);
+    }
+
+    .title {
+        opacity: 0.8;
+    }
+
+    &:hover .title {
+        opacity: 1;
+    }
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .circle {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: var(--circle-width);
+        height: var(--circle-width);
+        border-radius: 50%;
+        background-color: var(--secondary-25);
+    }
+
+    .circle::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(var(--circle-width) - 1px);
+        height: calc(var(--circle-width) - 1px);
+        background-color: transparent;
+        border-radius: 50%;
+        border: 2px solid var(--secondary);
+    }
+
+    .circle::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(var(--circle-width) * 2 / 3);
+        height: calc(var(--circle-width) * 2 / 3);
+        background-color: var(--secondary);
+        border-radius: 50%;
+        display: none;
+    }
+
+    input:checked + .circle::after {
+        display: block;
+    }
+
+    &.checked {
+        pointer-events: none;
+
+        .title {
+            opacity: 1;
+        }
+    }
+}

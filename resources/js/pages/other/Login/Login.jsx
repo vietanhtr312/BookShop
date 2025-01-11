@@ -5,7 +5,7 @@ import { useState, useNavigate } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { CustomInput, PasswordInput } from '~/components/Input';
-import Button from '~/components/Button';
+import {Button} from '~/components/Button';
 
 const cx = classNames.bind(styles);
 

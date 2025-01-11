@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import background from '~/assets/background';
-import Button from '~/components/Button';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import { Link } from 'react-router-dom';
