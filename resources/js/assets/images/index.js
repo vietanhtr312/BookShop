@@ -10,6 +10,7 @@ import appStore from './appstore.png';
 import qrCode from './qr_code.png';
 import logo from './logo.svg';
 import emptyCart from './empty_cart.png';
+import prod1 from './prod_1.webp';
 
 const images = {
     banner1,
@@ -23,7 +24,8 @@ const images = {
     appStore,
     qrCode,
     logo,
-    emptyCart
+    emptyCart,
+    prod1
 };
 
 export default images;

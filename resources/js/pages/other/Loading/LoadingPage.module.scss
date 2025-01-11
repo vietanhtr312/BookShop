@@ -1,0 +1,27 @@
+.loading {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.loading-icon {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    font-size: 80px;
+    color: var(--secondary);
+    animation: spinner 4s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

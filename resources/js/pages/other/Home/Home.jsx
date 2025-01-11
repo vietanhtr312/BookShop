@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import background from '~/assets/background';
@@ -8,31 +8,56 @@ import "react-multi-carousel/lib/styles.css";
 import { Link } from 'react-router-dom';
 
 import images from '~/assets/images';
+import ProductList from '~/components/ProductList';
+import Banner from '~/components/Banner';
 
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
+import axios from 'axios';
 const cx = classNames.bind(styles);
 
 const Home = () => {
+    const [categories, setCategories] = useState([]);
+    const [productCategories, setProductCategories] = useState([]);
 
-    const [categories, setCategories] = useState([
-        {
-            title: 'Sách Văn Học',
-            images: images.cat_1,
-        },
-        {
-            title: 'Sách Kinh Tế',
-            images: images.cat_2,
-        },
-        {
-            title: 'Sách Tâm Lý',
-            images: images.cat_3,
-        },
-        {
-            title: 'Sách Ngoại Ngữ',
-            images: images.cat_4,
-        },
-    ]);
+    useEffect(() => {
+        axios.get('/api/categories')
+            .then(res => {
+                console.log(res);
+                setCategories(res.data.categories);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, []);
+
+    useEffect(() => {
+        const fetchProductCategories = async () => {
+            const tempProductCategories = [];
+            for (const item of categories) {
+                try {
+                    const res = await axios.get('/api/products', {
+                        params: {
+                            category_id: item.id,
+                        }
+                    });
+                    console.log(res);
+                    tempProductCategories.push({ data: res.data.products.data, id: item.id });
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            setProductCategories(tempProductCategories);
+        };
+
+        if (categories.length > 0) {
+            fetchProductCategories();
+        }
+    }, [categories]);
+
+    console.log(productCategories);
+
+
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -55,14 +80,15 @@ const Home = () => {
 
     return (
         <div className="grid wide">
+            <Banner categories={categories}></Banner>
             <div className={cx('slider-wrapper')}>
                 <div className={cx('slider')}>
                     <Carousel responsive={responsive}>
-                        {categories && categories.map((item, index) => {
+                        {categories.length > 0 && categories.map((item, index) => {
                             return (
-                                <Link to={`/products/category/${item?.title}`} className={cx('slider-item')} key={index}>
-                                    <img src={item?.images} alt={item?.title} />
-                                    <p>{item?.title}</p>
+                                <Link to={`/products/category/${item?.name}`} className={cx('slider-item')} key={index}>
+                                    <img src={item?.images ?? images.cat_1} alt={item?.name} />
+                                    <p>{item?.name}</p>
                                 </Link>
                             )
                         })}
@@ -74,26 +100,19 @@ const Home = () => {
                 <div className={cx('featured')}>
                     <div className={cx('section-title')}>
                         <h2>Sản phẩm nổi bật</h2>
-                        <div>
-                            <div className={cx('categories-item')}>
-                                <h3>Sách Văn Học</h3>
-                            </div>
-                        </div>
-                        <div>
-                            <div className={cx('categories-item')}>
-                                <h3>Sách Kinh Tế</h3>
-                            </div>
-                        </div>
-                        <div>
-                            <div className={cx('categories-item')}>
-                                <h3>Sách Tâm Lý</h3>
-                            </div>
-                        </div>
-                        <div>
-                            <div className={cx('categories-item')}>
-                                <h3>Sách Ngoại Ngữ</h3>
-                            </div>
-                        </div>
+                        {
+                            categories.length > 0 && categories.map((category, index) => {
+                                return (
+                                    <div>
+                                        <div className={cx('categories-item')}>
+                                            <h3>{category.name}</h3>
+                                        </div>
+                                        <ProductList data={productCategories.length > 0 ? productCategories.filter((item) => item.id === category.id)[0]?.data : []}></ProductList>
+                                    </div>
+                                )
+                            })
+                        }
+
                     </div>
                 </div>
             </div>

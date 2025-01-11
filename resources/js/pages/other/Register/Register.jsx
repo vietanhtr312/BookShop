@@ -20,7 +20,9 @@ const Register = () => {
     const [passwordError, setPasswordError] = useState('')
 
     const onButtonClick = async () => {
-        axios.post('register', {
+        console.log(username, email, password, confirmPassword);
+        axios.post('/api/register', {
+            name: username,
             email: email,
             password: password
         }).then((response) => {

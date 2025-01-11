@@ -1,0 +1,22 @@
+.action-btns {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .favorite-btn {
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: var(--icon-medium);
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .action-btns .favorite-btn {
+        font-size: calc(var(--icon-medium) - 2px);
+    }
+}

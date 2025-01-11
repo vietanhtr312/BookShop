@@ -5,7 +5,7 @@ const routes = {
     user: {
         home: '/home',
         productList: '/products',
-        productDetail: '/product/:productId/:variantId',
+        productDetail: '/product/:productId',
         cart: '/cart',
     },
 
