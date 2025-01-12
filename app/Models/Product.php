@@ -22,5 +22,15 @@ class Product extends Model
         'new',
         'sale',
         'sale_type'
-    ];    
+    ];  
+    
+    public function variants() 
+    {   
+        return $this->hasMany(Variant::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 } 

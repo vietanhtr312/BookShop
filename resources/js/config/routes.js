@@ -2,7 +2,7 @@ const routes = {
     admin: {
         home: '/admin',
         productList: '/admin/products',
-        productDetail: '/admin/product/:productId',
+        productDetail: '/admin/product/:id',
         productCreate: '/admin/product/create',
     },
 

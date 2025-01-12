@@ -23,6 +23,8 @@
         "@fortawesome/free-solid-svg-icons": "^6.6.0",
         "@fortawesome/react-fontawesome": "^0.2.2",
         "@tippyjs/react": "^4.2.6",
+        "ckeditor5": "^44.1.0",
+        "ckeditor5-premium-features": "^44.1.0",
         "classnames": "^2.5.1",
         "normalize.css": "^8.0.1",
         "react": "^18.3.1",

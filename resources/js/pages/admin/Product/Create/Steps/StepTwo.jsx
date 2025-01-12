@@ -30,7 +30,7 @@ const StepTwo = ({
     useEffect(() => {
         if (next) {
             for (let i = 0; i < variants.length; i++) {
-                if (variants[i].color_id === '') {
+                if (variants[i].copy_id === '') {
                     setVariants((prevVar) =>
                         prevVar.map((variant, index) =>
                             index === i ? { ...variant, error: 'Vui lòng chọn màu' } : variant,
@@ -61,15 +61,15 @@ const StepTwo = ({
 
     return (
         <div className={cx('step-two')}>
-            {variants.map((variant, index) => (
+            {variants && variants.map((variant, index) => (
                 <div className={cx('variant')} key={`variant${index}`}>
                     <div className={cx('color-and-images')}>
                         <div className={cx('color')}>
                             <Copies
-                                id={variant.color_id}
-                                setId={(value) => updateVariantField('color_id', value, index)}
-                                name={variant.color_name}
-                                setName={(value) => updateVariantField('color_name', value, index)}
+                                id={variant.copy_id}
+                                setId={(value) => updateVariantField('copy_id', value, index)}
+                                name={variant.copy_name}
+                                setName={(value) => updateVariantField('copy_name', value, index)}
                                 error={variant.error}
                                 clearError={() => updateVariantField('error', '', index)}
                             />

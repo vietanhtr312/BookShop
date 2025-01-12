@@ -8,7 +8,7 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
-const InformationBox = ({ intro, detail, preserve }) => {
+const InformationBox = ({ intro, detail }) => {
     const [current, setCurrent] = useState('intro');
     const [show, setShow] = useState(false);
 

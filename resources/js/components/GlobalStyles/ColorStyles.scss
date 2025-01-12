@@ -15,7 +15,9 @@
     --secondary-50: rgba(var(--secondary-r), var(--secondary-g), var(--secondary-b), 0.5);
     --secondary-75: rgba(var(--secondary-r), var(--secondary-g), var(--secondary-b), 0.75);
 
-    --text-primary: var(--secondary);
+    vaf: rgb(243, 107, 80);
+
+    --text-primary: rgb(58, 58, 58);
     --text-primary-50: rgba(0, 0, 0, 0.5);
     --text-secondary: white;
     --text-secondary-50: rgba(255, 255, 255, 0.5);

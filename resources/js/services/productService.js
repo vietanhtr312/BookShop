@@ -71,7 +71,7 @@ export const deleteProduct = async (id) => {
 
 export const getProduct = async (id, variants = true) => {
     try {
-        const response = await axios.get('/api/product', { params: { id: id } });
+        const response = await axios.get('/api/product', { params: { id: id , variants: variants} });
         if (response.status === 200) {
             return response.data;
         } else {

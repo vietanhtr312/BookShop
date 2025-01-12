@@ -8,7 +8,7 @@ import Table from './Table/Table';
 import Pagination from '~/components/Pagination';
 import ListHeader from './Part/ListHeader';
 import LoadingPage from '~/pages/other/Loading';
-import { getProducts } from '~/services/productService';
+import { getProducts, deleteProduct } from '~/services/productService';
 import { ToastContainer, toast } from 'react-toastify';
 
 const cx = classNames.bind(styles);

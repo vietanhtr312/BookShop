@@ -25,6 +25,7 @@ class ProductResource extends JsonResource
         'sale_type' => $this->sale_type,
         'created_at' => $this->created_at,
         'category_name' => $this->category->name ?? null,
+        'variants' => VariantResource::collection($this->whenLoaded('variants')),
         ];
     }
 

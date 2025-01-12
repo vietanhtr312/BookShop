@@ -35,7 +35,7 @@ const AdminProductCreate = () => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    console.log(product);
+    // console.log(product);
 
     useEffect(() => {
         const handleCreate = async () => {

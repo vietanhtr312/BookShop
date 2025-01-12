@@ -19,7 +19,7 @@ const StepOne = ({ initialProduct, onSubmit = fn, next = false, setNext = fn }) 
         productPrice: '',
     });
 
-    console.log(product);
+    // console.log(product);
 
     useEffect(() => {
         setProduct(initialProduct);
@@ -86,10 +86,8 @@ const StepOne = ({ initialProduct, onSubmit = fn, next = false, setNext = fn }) 
                 <Informations
                     intro={product.intro}
                     detail={product.detail}
-                    preserve={product.preserve}
                     setIntro={(value) => setProductField('intro', value)}
                     setDetail={(value) => setProductField('detail', value)}
-                    setPreserve={(value) => setProductField('preserve', value)}
                 />
             </div>
         </div>

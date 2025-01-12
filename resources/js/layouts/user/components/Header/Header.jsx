@@ -8,6 +8,7 @@ import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import CartModal from '~/components/CartModal/CartModal';
+import config from '~/config';
 
 function Header() {
     const categories = [];
@@ -82,7 +83,7 @@ function Header() {
                 <div className={cx("search_wrap")}>
                     <div className='row' style={{ alignItems: 'center' }}>
                         <div className={cx("logo", "col l-2 m-4")}>
-                            <Link to=""><img src={images.logo} alt="Logo" /></Link>
+                            <Link to={config.routes.user.home}><img src={images.logo} alt="Logo" /></Link>
                         </div>
 
                         <div className='col l-8 m-6 c-0'>

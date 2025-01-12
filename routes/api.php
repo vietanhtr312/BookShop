@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CopyController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\VariantController;
+use App\Http\Controllers\CartController;
 use App\Models\Copy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,3 +44,9 @@ Route::get('/categories', [CategoryController::class, 'index']);
 //Copy
 Route::get('/copy', [CopyController::class, 'getCopy']);
 Route::get('/copies', [CopyController::class, 'index']);
+
+//Cart
+Route::get('/carts', [CartController::class,'getCarts']);
+Route::post('/cart/add', [CartController::class, 'addToCart']);
+Route::post('cart/update/{id}', [CartController::class,'updateCart']);
+Route::delete('/cart/delete/{id}', [CartController::class,'deleteCart']);

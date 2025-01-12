@@ -6,10 +6,10 @@ import { Input } from '~/components/Input';
 
 const cx = classNames.bind(styles);
 
-const Quantity = ({ quantity, index = 1 }) => {
+const Quantity = ({ quantity, setQuantity, index = 1 }) => {
     return (
-        <div className={cx('size')}>
-            <Input name={`size-${index}`} label="Size" value={quantity.size} disabled />
+        <div className={cx('quantity')}>
+            <Input name={`quantity-${index}`} type="number" label="Quantity" value={quantity} onChange={setQuantity}/>
         </div>
     );
 };

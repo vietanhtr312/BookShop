@@ -75,6 +75,7 @@ const TextArea = ({ text = '', onChange, placeholder = 'placeholder', className 
     }, []);
 
     const editorConfig = {
+        licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3Mzc5MzU5OTksImp0aSI6IjE2YTY2MTEzLTg4OGQtNDI2OS04N2ZjLTk2MTEzOWEwYTlmZSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjRiMDVhMWIzIn0.SLuwPrWJ0SE4TJiqI1gmYIvzcDbapoDePVAqmVy9xeJhnKI3U33nqNx8tFKR4RLkyOqy0e5nEITDB_W9cstD2Q',
         toolbar: {
             items: [
                 'undo',

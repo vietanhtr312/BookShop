@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Detail.module.scss';
-// import useProduct from '~/hooks/useProduct';
-// import useVariants from '~/hooks/useVariants';
-// import { deleteProduct, getProduct, updateProduct } from '~/services/productService';
-// import { deleteVariants, getVariants, updateVariant } from '~/services/variantService';
+import useProduct from '~/hooks/useProduct';
+import useVariants from '~/hooks/useVariants';
+import { deleteProduct, getProduct, updateProduct } from '~/services/productService';
+import { deleteVariants, getVariants, updateVariant } from '~/services/variantService';
 
-// import StepOne from '../Create/Steps/StepOne';
-// import StepTwo from '../Create/Steps/StepTwo';
+import StepOne from '../Create/Steps/StepOne';
+import StepTwo from '../Create/Steps/StepTwo';
 import Content from '~/components/Content';
 import LoadingPage from '~/pages/other/Loading';
 import { Button } from '~/components/Button';
@@ -19,11 +19,11 @@ const cx = classNames.bind(styles);
 const BREADCRUMB = [
     {
         title: 'Trang chủ',
-        link: config.routes.admin.dashboard,
+        link: '/',
     },
     {
         title: 'Sản phẩm - Danh sách',
-        link: config.routes.admin.productList,
+        link: '/admin/products',
     },
     {
         title: 'Chi tiết',
@@ -33,16 +33,16 @@ const BREADCRUMB = [
 const AdminProductDetail = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-    // const { product, setProduct, setProductField } = useProduct({});
-    // const {
-    //     variants,
-    //     setVariants,
-    //     deleteVariantField,
-    //     updateVariantField,
-    //     deleteVariant,
-    //     deleteVariantList,
-    //     setDeleteVariantList,
-    // } = useVariants([]);
+    const { product, setProduct, setProductField } = useProduct({});
+    const {
+        variants,
+        setVariants,
+        deleteVariantField,
+        updateVariantField,
+        deleteVariant,
+        deleteVariantList,
+        setDeleteVariantList,
+    } = useVariants([]);
     const [next, setNext] = useState({
         product: '',
         variants: '',
@@ -69,6 +69,8 @@ const AdminProductDetail = () => {
 
         fetchProductData();
     }, [id]);
+
+    console.log(variants);
 
     const updateProductAndVariants = async () => {
         const productRes = await updateProduct(product);
@@ -143,7 +145,6 @@ const AdminProductDetail = () => {
                     <div className={cx('product-title')}>
                         <h3>
                             <span>Thông tin sản phẩm</span>
-                            <span>{product.sku && ` - ${product.sku}`}</span>
                         </h3>
                         <h3>Đã bán: {product.sold_quantity} sản phẩm</h3>
                     </div>
@@ -159,7 +160,7 @@ const AdminProductDetail = () => {
                         )}
                     </div>
 
-                    <h3 className={cx('variant-title')}>Các mẫu mã</h3>
+                    <h3 className={cx('variant-title')}>Các bản sách</h3>
 
                     <div className={cx('variants')}>
                         <StepTwo
@@ -176,7 +177,7 @@ const AdminProductDetail = () => {
                         <Button primary onClick={handleUpdateProduct}>
                             Cập nhật
                         </Button>
-                        <Button danger onClick={handleDeleteProduct}>
+                        <Button secondary onClick={handleDeleteProduct}>
                             Xóa sản phẩm
                         </Button>
                     </div>

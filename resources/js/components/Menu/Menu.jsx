@@ -72,7 +72,7 @@ const Menu = ({
         <div className={cx('menu')} tabIndex="-1" {...attrs}>
             {h && !current.title && (
                 <header className={cx('first-header')}>
-                    <Button width="100%" type="button" noRadius>
+                    <Button primary width="100%" type="button" noRadius>
                         {h}
                     </Button>
                 </header>

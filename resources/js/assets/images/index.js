@@ -11,6 +11,7 @@ import qrCode from './qr_code.png';
 import logo from './logo.svg';
 import emptyCart from './empty_cart.png';
 import prod1 from './prod_1.webp';
+import done from './done.png';
 
 const images = {
     banner1,
@@ -25,7 +26,8 @@ const images = {
     qrCode,
     logo,
     emptyCart,
-    prod1
+    prod1,
+    done,
 };
 
 export default images;

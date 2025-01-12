@@ -50,7 +50,7 @@ const ProductDetail = () => {
         window.scrollTo(0, 0);
     }, [productId]);
 
-    console.log(product);
+    // console.log(product);
 
     return (
         <>

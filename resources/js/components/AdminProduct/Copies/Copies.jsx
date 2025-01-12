@@ -55,7 +55,7 @@ const Copies = ({ id, setId, name, setName, error, clearError = fn }) => {
             <div className={cx('copies', { error: error })}>
                 <div className={cx('copy-btn')} ref={copiesRef} onClick={handleClickMenu}>
                     <span>
-                        Màu sắc<span className={cx('required')}>*</span>:
+                        Bản sách:<span className={cx('required')}>*</span>:
                     </span>
                     <FontAwesomeIcon icon={faPalette} />
                     {show && (
@@ -68,7 +68,7 @@ const Copies = ({ id, setId, name, setName, error, clearError = fn }) => {
                                         style={{ backgroundCopy: copy.code }}
                                         onClick={() => handleCopyClick(copy)}
                                     >
-                                        {/* {copy.name} */}
+                                        {copy.name}
                                     </span>
                                 ))}
                         </div>

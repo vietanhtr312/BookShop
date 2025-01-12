@@ -31,7 +31,6 @@ const transformCategoriesToMenu = (categories) => {
 
 const Categories = ({ id, setId, name, setName, error, clearError, title = 'Loại sản phẩm' }) => {
     const [categories, setCategories] = useState([]);
-    console.log(categories);
 
     useEffect(() => {
         const fetchCategories = async () => {

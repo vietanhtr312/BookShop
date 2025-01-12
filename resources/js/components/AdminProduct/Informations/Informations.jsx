@@ -8,7 +8,7 @@ import { OutInTransition } from '~/animations/Transition';
 const cx = classNames.bind(styles);
 const fn = () => {};
 
-const Informations = ({ intro, detail, preserve, setIntro = fn, setDetail = fn, setPreserve = fn }) => {
+const Informations = ({ intro, detail, setIntro = fn, setDetail = fn}) => {
     const [current, setCurrent] = useState('intro');
 
     return (
@@ -28,13 +28,6 @@ const Informations = ({ intro, detail, preserve, setIntro = fn, setDetail = fn, 
                 >
                     Chi tiết
                 </button>
-                <button
-                    className={cx('info-option', { active: current === 'preserve' })}
-                    type="button"
-                    onClick={() => setCurrent('preserve')}
-                >
-                    Bảo quản
-                </button>
             </div>
 
             <div className={cx('info-content')}>
@@ -44,9 +37,7 @@ const Informations = ({ intro, detail, preserve, setIntro = fn, setDetail = fn, 
                             <TextArea text={intro} onChange={setIntro} placeholder="Giới thiệu về sản phẩm" />
                         ) : current === 'detail' ? (
                             <TextArea text={detail} onChange={setDetail} placeholder="Chi tiết về sản phẩm" />
-                        ) : (
-                            <TextArea text={preserve} onChange={setPreserve} placeholder="Bảo quản sản phẩm" />
-                        )}
+                        ) : null}
                     </div>
                 </OutInTransition>
             </div>
