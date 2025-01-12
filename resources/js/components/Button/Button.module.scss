@@ -4,7 +4,6 @@
     justify-content: center;
     gap: 10px;
     font-weight: 600;
-    background-color: var(--primary-75);
     color: white;
     border-radius: 2px;
     cursor: pointer;
@@ -52,12 +51,15 @@
 // Type
 .text {
     background-color: transparent;
-    color: white;
-    text-decoration: underline;
+    color: var(--text-color);
+    border: 1px solid;
 
-    &:hover,
+    &:hover{
+        background-color: var(--hover-item);
+    }
     &.active {
-        color: var(--cl-primary);
+        color: white;
+        background-color: var(--cl-primary);
     }
 }
 

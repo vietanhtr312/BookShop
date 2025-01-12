@@ -9,7 +9,7 @@ const routes = {
     user: {
         home: '/home',
         productList: '/products',
-        productDetail: '/product/:productId',
+        productDetail: '/product/:productId/:variantId',
         cart: '/cart',
     },
 

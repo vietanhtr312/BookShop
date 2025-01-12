@@ -10,7 +10,7 @@ const Content = ({ children, breadcrumb }) => {
     return (
         <>
             <Breadcrumb items={breadcrumb} />
-            <div className={cx('content')}>{children}</div>
+            <div className={cx('content', 'grid wide')}>{children}</div>
         </>
     );
 };

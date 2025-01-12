@@ -12,13 +12,15 @@ const cx = classNames.bind(styles);
 const Breadcrumb = ({ items }) => {
     return (
         <div className={cx('breadcrumb')}>
-            {items.length > 0 &&
-                items.map((item, index) => (
-                    <Fragment key={index}>
-                        <BreadcrumbItem title={item.title} link={item.link} active={index === items.length - 1} />
-                        {index < items.length - 1 && <FontAwesomeIcon icon={faChevronRight} />}
-                    </Fragment>
-                ))}
+            <div className='grid wide'>
+                {items.length > 0 &&
+                    items.map((item, index) => (
+                        <Fragment key={index}>
+                            <BreadcrumbItem title={item.title} link={item.link} active={index === items.length - 1} />
+                            {index < items.length - 1 && <FontAwesomeIcon icon={faChevronRight} />}
+                        </Fragment>
+                    ))}
+            </div>
         </div>
     );
 };

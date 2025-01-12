@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './ProductCard.module.scss';
 import { formatPrice } from "../../utils/formarter";
 import images from "~/assets/images";
+import { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faCartShopping } from "@fortawesome/free-solid-svg-icons";
@@ -10,8 +11,10 @@ import { faEye, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles);
 
 const ProductCard = ({product}) => {
+    const [variant, setVariant] = useState(product?.variants?.[0] || {});
+    
     return (
-        <Link to = {`/product/${product?.id}`} key = {product?.id}>
+        <Link to = {`/product/${product?.id}/${variant.id}`} key = {product?.id}>
             <div className={cx('featured-item')}>
                 <div className={cx('featured-item-pic')}
                     style={{ backgroundImage: `url(${product?.avatar ?? images.prod1})` }}>

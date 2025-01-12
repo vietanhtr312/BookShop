@@ -9,13 +9,16 @@
 
             .title {
                 font-weight: 600;
-                color: var(--primary-color);
                 margin-bottom: 15px;
                 text-transform: uppercase;
+
+                svg {
+                    margin-right: 10px;
+                }
             }
 
             h2 {
-                color: rgb(28, 28, 28);
+                color: var(--text-color);
                 font-weight: 700;
                 margin-bottom: 10px;
             }
@@ -67,5 +70,10 @@
             }
 
         }
+    }
+
+    .pagination {
+        margin: auto;
+        width: fit-content;
     }
 }

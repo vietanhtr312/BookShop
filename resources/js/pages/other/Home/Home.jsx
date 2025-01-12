@@ -10,49 +10,49 @@ import Banner from '~/components/Banner';
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 import axios from 'axios';
+import { getCategories } from '~/services/categoryService';
+import { getProducts } from '~/services/productService';
+import LoadingPage from '../Loading';
 const cx = classNames.bind(styles);
 
 const Home = () => {
     const [categories, setCategories] = useState([]);
     const [productCategories, setProductCategories] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const fetchCategories = async () => {
+        try {
+            const res = await getCategories();
+            setCategories(res.categories);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     useEffect(() => {
-        axios.get('/api/categories')
-            .then(res => {
-                console.log(res);
-                setCategories(res.data.categories);
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        fetchCategories();
     }, []);
 
-    useEffect(() => {
-        const fetchProductCategories = async () => {
-            const tempProductCategories = [];
-            for (const item of categories) {
-                try {
-                    const res = await axios.get('/api/products', {
-                        params: {
-                            category_id: item.id,
-                        }
-                    });
-                    console.log(res);
-                    tempProductCategories.push({ data: res.data.products.data, id: item.id });
-                } catch (err) {
-                    console.log(err);
-                }
+    const fetchProductCategories = async () => {
+        setLoading(true);
+        const tempProductCategories = [];
+        for (const item of categories) {
+            try {
+                const res = await getProducts('new', 1, item.id, true, 4);
+                tempProductCategories.push({ data: res.products.data, id: item.id });
+            } catch (err) {
+                console.log(err);
             }
-            setProductCategories(tempProductCategories);
-        };
+        }
+        setProductCategories(tempProductCategories);
+        setLoading(false);
+    }
 
+    useEffect(() => {
         if (categories.length > 0) {
             fetchProductCategories();
         }
     }, [categories]);
-
-    console.log(productCategories);
-
 
     const responsive = {
         superLargeDesktop: {
@@ -82,7 +82,7 @@ const Home = () => {
                     <Carousel responsive={responsive}>
                         {categories.length > 0 && categories.map((item, index) => {
                             return (
-                                <Link to={`/products/category/${item?.name}`} className={cx('slider-item')} key={index}>
+                                <Link to={`/products?category_id=${item.id}`} className={cx('slider-item')} key={index}>
                                     <img src={item?.images ?? images.cat_1} alt={item?.name} />
                                     <p>{item?.name}</p>
                                 </Link>
@@ -96,7 +96,7 @@ const Home = () => {
                 <div className={cx('featured')}>
                     <div className={cx('section-title')}>
                         <h2>Sản phẩm nổi bật</h2>
-                        {
+                        {loading ? <LoadingPage height="100px" /> :
                             categories.length > 0 && categories.map((category, index) => {
                                 return (
                                     <div>
@@ -106,6 +106,7 @@ const Home = () => {
                                         <ProductList data={productCategories.length > 0 ? productCategories.filter((item) => item.id === category.id)[0]?.data : []}></ProductList>
                                     </div>
                                 )
+
                             })
                         }
 

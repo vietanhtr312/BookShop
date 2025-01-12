@@ -82,12 +82,15 @@ export const getProduct = async (id, variants = true) => {
     }
 };
 
-export const getProducts = async (type = 'new', page = 1, categoryId = null, perPage = 10) => {
+export const getProducts = async (type = 'new', page = 1, categoryId = null, variants = true , perPage = 10, start, end) => {
     try {
         const params = {
             type: type,
             page: page,
+            variants: variants,
             per_page: perPage,
+            start: start,
+            end: end,
         };
 
         if (categoryId) params.category_id = categoryId;

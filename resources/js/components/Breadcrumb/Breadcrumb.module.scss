@@ -2,6 +2,8 @@
     display: flex;
     gap: 5px;
     align-items: center;
+    background-color: #fafafa;
+    height: 65px;
 }
 
 .breadcrumb-item {
@@ -9,6 +11,7 @@
     background-color: transparent;
     color: var(--text-primary);
     font-weight: 600;
+    font-size: 18px;
 
     &:hover {
         color: var(--secondary);
