@@ -71,7 +71,7 @@ export const deleteProduct = async (id) => {
 
 export const getProduct = async (id, variants = true) => {
     try {
-        const response = await axios.get('/api/product', { params: { id: id , variants: variants} });
+        const response = await axios.get('/api/product', { params: { id: id, variants: variants } });
         if (response.status === 200) {
             return response.data;
         } else {
@@ -82,7 +82,7 @@ export const getProduct = async (id, variants = true) => {
     }
 };
 
-export const getProducts = async (type = 'new', page = 1, categoryId = null, variants = true , perPage = 10, start, end) => {
+export const getProducts = async (type = 'new', page = 1, categoryId = null, variants = true, perPage = 10, start, end, searchTerm) => {
     try {
         const params = {
             type: type,
@@ -91,6 +91,7 @@ export const getProducts = async (type = 'new', page = 1, categoryId = null, var
             per_page: perPage,
             start: start,
             end: end,
+            name: searchTerm,
         };
 
         if (categoryId) params.category_id = categoryId;

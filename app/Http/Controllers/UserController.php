@@ -13,26 +13,34 @@ class UserController extends Controller
     //
     public function register(Request $request)
     {
-        $messageValidation = '';
+        // $messageValidation = '';
 
-        if (!$request->input('name')) {
-            $messageValidation = 'Please enter your name.';
-        } else if (!$request->input('email')) {
-            $messageValidation = 'Please enter your email.';
-        } else if (!$request->input('password')) {
-            $messageValidation = 'Please enter your password.';
-        } else {
-            $user = User::where('email', $request->input('email'))->first();
-            if ($user) {
-                $messageValidation = 'This email is already in use.';
-            }
-        }
+        // if (!$request->input('name')) {
+        //     $messageValidation = 'Please enter your name.';
+        // } else if (!$request->input('email')) {
+        //     $messageValidation = 'Please enter your email.';
+        // } else if (!$request->input('password')) {
+        //     $messageValidation = 'Please enter your password.';
+        // } else {
+        //     $user = User::where('email', $request->input('email'))->first();
+        //     if ($user) {
+        //         $messageValidation = 'This email is already in use.';
+        //     }
+        // }
+        
+        // if ($messageValidation) {
+        //     return response()->json([
+        //         'message' => $messageValidation,
+        //     ], 422);
+        // }
 
-        if ($messageValidation) {
-            return response()->json([
-                'message' => $messageValidation,
-            ], 422);
-        }
+        // $user = User::where('email', $request->input('email'))->first();
+        // if ($user) {
+        //     return response()->json([
+        //         'message' => 'This email is already in use.',
+        //     ], 422);
+        // }
+
 
         try {
             $user = new User();
@@ -41,7 +49,10 @@ class UserController extends Controller
             $user->password = bcrypt($request->password);
             $user->save();
         } catch (QueryException $e) {
-            throw new \Exception('Error create profile:' . $e->getMessage());
+            return response()->json([
+                'message' =>  $e->getMessage(),
+            ], 500);
+            // throw new \Exception('Error create profile:' . $e->getMessage());
         }
 
         return response()->json([
@@ -87,10 +98,9 @@ class UserController extends Controller
             $token = $user->createToken('token_name')->plainTextToken;
 
             return response()->json([
-                'message' => 'Login successfully!',
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-                'user' => $user,
+                'token' => $token,
+                'role' => $user->role,
+                'user_id' => $user->id
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

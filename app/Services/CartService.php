@@ -16,7 +16,6 @@ class CartService
         try {
             $cart = Cart::where('variant_id', $data['variant_id'])
                         ->where('user_id', $data['user_id'])
-                        ->where('size', $data['size'])
                         ->first();
             if ($cart) {
                 $cart->quantity += $data['quantity'];

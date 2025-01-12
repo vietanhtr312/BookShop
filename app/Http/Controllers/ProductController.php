@@ -63,7 +63,8 @@ class ProductController extends Controller
         $perPage = $request->query('per_page') ?? 10;
         $start = $request->query('start') ?? null;
         $end = $request->query('end') ?? null;
-        $products = $this->productService->getProducts( $categoryId, $type, $variants, $perPage, $start, $end);
+        $name = $request->query('name') ?? null;
+        $products = $this->productService->getProducts( $categoryId, $type, $variants, $perPage, $start, $end, $name );
 
         
         return response()->json([

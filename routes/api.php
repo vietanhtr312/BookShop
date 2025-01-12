@@ -17,15 +17,17 @@ Route::get('/user', function (Request $request) {
 
 
 Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', 'App\Http\Controllers\UserController@login');
+Route::post('/login', [UserController::class, 'login']);
 
 Route::post('/upload/images', [UploadController::class, 'uploadImages']);
 Route::post('/upload/image', [UploadController::class, 'uploadImage']);
 
 // Product
-Route::post('/product/create', [ProductController::class, 'createProduct']);
-Route::post('/product/update/{id}', [ProductController::class, 'updateProduct']);
-Route::delete('/product/delete/{id}', [ProductController::class, 'deleteProduct']);
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+    Route::post('/product/create', [ProductController::class, 'createProduct']);
+    Route::post('/product/update/{id}', [ProductController::class, 'updateProduct']);
+    Route::delete('/product/delete/{id}', [ProductController::class, 'deleteProduct']);
+});
 
 Route::get('/products', [ProductController::class, 'getProducts']);
 Route::get('/product', [ProductController::class, 'getProduct']);

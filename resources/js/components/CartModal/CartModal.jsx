@@ -3,26 +3,15 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { formatPrice } from "../../utils/formarter";
 import images from '~/assets/images';
+import { useCart } from '~/hooks/useCart';
+
 
 const cx = classNames.bind(styles);
 
 const CartModal = ({  }) => {
-    const carts = [
-        {
-            id: 1,
-            title: 'Sách 1',
-            images: images.cat_1,
-            price: 10000,
-            quantity: 2
-        },
-        {
-            id: 2,
-            title: 'Sách 2',
-            images: images.cat_2,
-            price: 20000,
-            quantity: 1
-        }
-    ];
+    const { cartData } = useCart();
+    const carts = cartData?.carts;
+
     return (
         <div className={cx('cart-modal')}>
             {(carts?.length > 0) ? (
@@ -34,18 +23,18 @@ const CartModal = ({  }) => {
                                 <div key={cart?.id}>
                                     <div className={cx('cart-modal-item')}>
                                         <div className={cx('item-img')}>
-                                            <img src={cart?.images} alt={cart.title} />
+                                            <img src={cart?.variant?.images ? cart?.variant?.images[0] : images.prod1} alt={cart.title} />
                                         </div>
                                         <div className={cx('item-info')}>
-                                            <h6>{cart?.title}</h6>
-                                            <span className={cx("item-price")}>{formatPrice(cart?.price)}</span>
+                                            <h6>{cart?.variant?.product?.name} - {cart?.variant?.copy_name}</h6>
+                                            <span className={cx("item-price")}>{formatPrice(cart?.variant?.product?.price)}</span>
                                             <span className={cx("item-multiply")}>x</span>
                                             <span className={cx("item-qty")}>{cart?.quantity}</span>
                                         </div>
                                     </div>
                                 </div>)
                         })}
-                        <Link to={''} className={cx('view-cart-btn')}>
+                        <Link to={'/cart'} className={cx('view-cart-btn')}>
                             <button className={cx('btn', 'btn--primary')}>Xem giỏ hàng</button>
                         </Link>
                     </div>

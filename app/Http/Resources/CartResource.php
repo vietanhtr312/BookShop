@@ -17,7 +17,6 @@ class CartResource extends JsonResource
         return [
             'id' => $this->id,
             'variant_id' => $this->variant_id,
-            'size' => $this->size,
             'quantity' => $this->quantity,
             'user_id' => $this->user_id,
             'variant' => new VariantResource($this->variant)

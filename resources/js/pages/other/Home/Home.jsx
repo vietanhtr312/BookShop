@@ -82,7 +82,7 @@ const Home = () => {
                     <Carousel responsive={responsive}>
                         {categories.length > 0 && categories.map((item, index) => {
                             return (
-                                <Link to={`/products?category_id=${item.id}`} className={cx('slider-item')} key={index}>
+                                <Link to={`/products/${item.id}`} className={cx('slider-item')} key={index}>
                                     <img src={item?.images ?? images.cat_1} alt={item?.name} />
                                     <p>{item?.name}</p>
                                 </Link>

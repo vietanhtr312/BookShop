@@ -9,11 +9,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import CartModal from '~/components/CartModal/CartModal';
 import config from '~/config';
+import { useCart } from '~/hooks/useCart';
 
 function Header() {
+    const { cartData } = useCart();
+    console.log(cartData);
+
     const categories = [];
     const [searchTerm, setSearchTerm] = useState('');
-    const [itemsCount, setItemsCount] = useState(0);
+    const [itemsCount, setItemsCount] = useState(cartData?.count);
     const [totalAmount, setTotalAmount] = useState(0);  
 
     const handleSearchTerm = (e) => {
@@ -91,7 +95,7 @@ function Header() {
                                 <div className={cx("search-input-wrap")}>
                                     <input type="search" placeholder="Tìm kiếm sản phẩm" spellCheck={false} onChange={(e) => handleSearchTerm(e)} />
                                 </div>
-                                <Link to={`search/${searchTerm}`}><button><FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon></button></Link>
+                                <Link to={`/products?search=${searchTerm}`} ><button><FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon></button></Link>
                             </div>
                         </div>
 

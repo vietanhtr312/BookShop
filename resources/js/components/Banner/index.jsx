@@ -22,11 +22,11 @@ function Banner({categories}) {
 
                                 <ul className={isShowCategory ? cx('') : cx('hidden')}>
                                     <li className={cx('main')}>
-                                        <Link to={'/'}>Nhà Sách Online</Link>
+                                        <Link to={'/products'}>Nhà Sách Online</Link>
                                     </li>
                                     {categories && categories?.map((category, index) => (
                                             <li key={index}>
-                                                <Link to={`products/category/${category?.name}`}>{category?.name}</Link>
+                                                <Link to={`/products/${category?.id}`}>{category?.name}</Link>
                                             </li>
                                         ))}
                                 </ul>

@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import styles from './Products.module.scss';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ import { getProducts } from "~/services/productService";
 import { getCategories } from "~/services/categoryService";
 import Pagination from "~/components/Pagination";
 import { Button } from "~/components/Button";
+import LoadingPage from "~/pages/other/Loading";
 
 const getBreadcrumbs = (category = null) => [
     {
@@ -52,6 +53,9 @@ const sorts = [
 const cx = classNames.bind(styles);
 
 const Products = () => {
+    const [done, setDone] = useState(false);
+    const navigate = useNavigate();
+    const { category_id } = useParams();
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -60,12 +64,12 @@ const Products = () => {
     const [upperPrice, setUpperPrice] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
-    const [category, setCategory] = useState(null);
+    const [categoryId, setCategoryId] = useState(category_id || null);
     const [breadcrumbs, setBreadcrumbs] = useState(getBreadcrumbs());
     const [changePrice, setChangePrice] = useState(false);
-
-    const category_id = useParams();
-    category_id ? setCategory(category_id) : setCategory(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const params = new URLSearchParams(window.location.search);
+    const search = params.get('search');
 
     const handleSortProduct = (sort) => {
         setSortType(sort.value);
@@ -81,28 +85,36 @@ const Products = () => {
     }
 
     useEffect(() => {
+        setSearchTerm(search || '');
         fetchCategories();
     }, []);
 
+
     const fetchProducts = async () => {
+        const tempProducts = []
         setLoading(true);
         try {
-            const res = await getProducts(sortType, currentPage, category, true, 9, lowerPrice, upperPrice);
-            setProducts(res.products.data);
+            const res = await getProducts(sortType, currentPage, categoryId, true, 9, lowerPrice, upperPrice, searchTerm);
+            console.log(res);
+            tempProducts.push(...res.products.data);
             setTotalPage(res.products.meta.last_page);
-            setBreadcrumbs(getBreadcrumbs(categories.find(c => c.id === category)));
+            setBreadcrumbs(getBreadcrumbs(categories.find(c => c.id === categoryId)));
         } catch (err) {
             console.log(err);
         }
-        setLoading(false);
+        setProducts(tempProducts);
+        setTimeout(() => {
+            setLoading(false);
+            setDone(true);
+        }, !done ? 1500 : 0);
     }
 
     useEffect(() => {
         fetchProducts();
-    }, [categories, category, sortType, changePrice, currentPage]);
+    }, [ categories, searchTerm, categoryId, sortType, changePrice, currentPage]);
 
     const handleChangeCategory = (id) => {
-        setCategory(id);
+        setCategoryId(id);
     }
 
     const handlePageChange = (newPage) => {
@@ -115,75 +127,86 @@ const Products = () => {
         setUpperPrice('');
         setChangePrice(!changePrice);
         setCurrentPage(1);
-        setCategory(null);
+        setCategoryId(null);
+        navigate('/products');
     }
 
     return (
-        <Content breadcrumb={breadcrumbs}>
-            <div className={cx('wrapper')}>
-                <div className={cx('grid', 'wide')}>
-                    <div className={cx('row')}>
-                        <div className={cx('col', 'l-3', 'm-12', 'c-12')}>
-                            <div className={cx('sidebar')}>
-                                <div className={cx('sidebar-item')}>
-                                    <h2 className={cx("title")}>
-                                        <FontAwesomeIcon icon={faFilter} />
-                                        Lọc sản phẩm
-                                    </h2>
-                                </div>
-                                <div className={cx('sidebar-item')}>
-                                    <h2>Mức giá</h2>
-                                    <div className={cx('price')}>
-                                        <div>
-                                            <p>Từ: </p>
-                                            <input placeholder="₫" type='number' min={0} value={lowerPrice} onChange={(e) => setLowerPrice(e.target.value)} />
-                                        </div>
-                                        <div>
-                                            <p>Đến: </p>
-                                            <input placeholder="₫" type='number' min={0} value={upperPrice} onChange={(e) => setUpperPrice(e.target.value)} />
-                                        </div>
-                                        <button className="btn btn--primary" onClick={() => {
-                                            setChangePrice({ changePrice: !changePrice });
-                                        }}>Áp dụng</button>
+        <>
+            <Content breadcrumb={breadcrumbs}>
+                <div className={cx('wrapper')}>
+                    <div className={cx('grid', 'wide')}>
+                        <div className={cx('row')}>
+                            <div className={cx('col', 'l-3', 'm-12', 'c-12')}>
+                                <div className={cx('sidebar')}>
+                                    <div className={cx('sidebar-item')}>
+                                        <h2 className={cx("title")}>
+                                            <FontAwesomeIcon icon={faFilter} />
+                                            Lọc sản phẩm
+                                        </h2>
                                     </div>
-                                </div>
-                                <div className={cx('sidebar-item')}>
-                                    <h2>Sắp xếp</h2>
-                                    <div className={cx('tags')}>
-                                        {sorts.map((sort, index) => (
-                                            <div className={cx('tag', `${sort.value === sortType ? "active" : ""}`)} key={index} onClick={() => handleSortProduct(sort)}>
-                                                {sort.name}
+                                    <div className={cx('sidebar-item')}>
+                                        <h2>Mức giá</h2>
+                                        <div className={cx('price')}>
+                                            <div>
+                                                <p>Từ: </p>
+                                                <input placeholder="₫" type='number' min={0} value={lowerPrice} onChange={(e) => setLowerPrice(e.target.value)} />
                                             </div>
-                                        ))}
+                                            <div>
+                                                <p>Đến: </p>
+                                                <input placeholder="₫" type='number' min={0} value={upperPrice} onChange={(e) => setUpperPrice(e.target.value)} />
+                                            </div>
+                                            <button className="btn btn--primary" onClick={() => {
+                                                setChangePrice({ changePrice: !changePrice });
+                                            }}>Áp dụng</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className={cx('sidebar-item')}>
-                                    <h2>Thể loại</h2>
-                                    <ul>
-                                        {categories.map((category, index) => (
-                                            <li key={index} onClick={() => handleChangeCategory(category?.id)}>
-                                                <Link to={``}>{category?.name}</Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <Button primary onClick={onCancelFilter}>Bỏ lọc</Button>
-                            </div>
-                        </div>
-                        <div className={cx('col', 'l-9', 'm-12', 'c-12')}>
-                            <div className="row">
-                                {products.map((product, index) => (
-                                    <div className="col l-4 m-4 c-12" key={index}>
-                                        <ProductCard product={product} />
+                                    <div className={cx('sidebar-item')}>
+                                        <h2>Sắp xếp</h2>
+                                        <div className={cx('tags')}>
+                                            {sorts.map((sort, index) => (
+                                                <div className={cx('tag', `${sort.value === sortType ? "active" : ""}`)} key={index} onClick={() => handleSortProduct(sort)}>
+                                                    {sort.name}
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                ))}
+                                    <div className={cx('sidebar-item')}>
+                                        <h2>Thể loại</h2>
+                                        <ul>
+                                            {categories.map((category, index) => (
+                                                <li key={index} onClick={() => handleChangeCategory(category?.id)} >
+                                                    <Link to={`/products/${category.id}`} className={cx(`${category?.id === categoryId ? "active" : ""}`, 'fsdalf')}>{category?.name}</Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <Button primary onClick={onCancelFilter}>Bỏ lọc</Button>
+                                </div>
                             </div>
-                            <div className={cx('pagination')}><Pagination current={currentPage} total={totalPage} setPage={handlePageChange} /></div>
+                            <div className={cx('col', 'l-9', 'm-12', 'c-12')}>
+                                <>
+                                    {loading && <LoadingPage />}
+                                    {!loading && products.length === 0 && <div className={cx('no-products')}>Không có sản phẩm nào</div>}
+                                    {!loading && products.length > 0 &&
+                                        <>
+                                            <div className={cx('product-list', "row")}>
+                                                {products.length > 0 && products.map((product, index) => (
+                                                    <div className={cx("col l-4 m-4 c-12")} key={index}>
+                                                        <ProductCard product={product} />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <div className={cx('pagination')}><Pagination current={currentPage} total={totalPage} setPage={handlePageChange} /></div>
+                                        </>
+                                    }
+                                </>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </Content>
+            </Content>
+        </>
     )
 }
 

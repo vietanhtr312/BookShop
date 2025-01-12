@@ -4,11 +4,10 @@ import { addToCart, getCarts, udpateCart } from '~/services/cartService';
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-    const { userId } = 1;
+    const userId = 1;
     const [cartData, setCartData] = useState({});
     const [cartItem, setCartItem] = useState({
         variant_id: '',
-        size: '',
         quantity: '',
         user_id: '',
     });
@@ -26,10 +25,9 @@ const CartProvider = ({ children }) => {
         }
     }, [userId]);
 
-    const handleAddToCart = async (variantId, size, quantity) => {
+    const handleAddToCart = async (variantId, quantity) => {
         const cartItem = {
             variant_id: variantId,
-            size: size,
             quantity: quantity,
             user_id: userId,
         };

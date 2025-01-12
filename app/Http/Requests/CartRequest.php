@@ -24,7 +24,6 @@ class CartRequest extends FormRequest
         return [
             //
             'variant_id' => 'required|exists:variants,id',
-            'size' => 'required|string',
             'quantity' => 'required|numeric|min:0',
             'user_id' => 'required|exists:users,id'
         ];

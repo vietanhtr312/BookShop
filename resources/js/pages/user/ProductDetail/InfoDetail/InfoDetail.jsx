@@ -9,7 +9,7 @@ import { QuantityButton } from '~/components/Button';
 const cx = classNames.bind(styles);
 
 const InfoDetail = ({ product, variant, copies }) => {
-    const [selected, setSelected] = useState({ size: '', quantity: 1 });
+    const [selected, setSelected] = useState({ quantity: 1 });
     const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {

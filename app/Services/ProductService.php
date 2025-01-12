@@ -11,15 +11,15 @@ class ProductService
 {
     private $uploadService;
 
-    public function __construct(UploadService $uploadService) 
+    public function __construct(UploadService $uploadService)
     {
         $this->uploadService = $uploadService;
     }
 
     public function createProduct(array $data)
-    {   
+    {
         $image = null;
-        if (isset($data['image_file']) && $data['image_file']) {       
+        if (isset($data['image_file']) && $data['image_file']) {
             $image = $this->uploadService->uploadImage($data['image_file']);
         }
 
@@ -41,7 +41,7 @@ class ProductService
             $product->avatar = $image ?? $product->avatar;
             $product->sale_type = $saleType ?? $product->sale_type;
             $product->sale = $sale ?? $product->sale;
-            $product->save();   
+            $product->save();
             return $product;
         } catch (QueryException $e) {
             throw new \Exception('Lỗi tạo sản phẩm: ' . $e->getMessage());
@@ -51,7 +51,7 @@ class ProductService
     public function updateProduct(Product $product, array $data)
     {
         $image = null;
-        if (isset($data['image_file']) && $data['image_file']) {       
+        if (isset($data['image_file']) && $data['image_file']) {
             $image = $this->uploadService->uploadImage($data['image_file']);
             if ($product->avatar !== null) {
                 $this->uploadService->deleteImage($product->avatar);
@@ -61,8 +61,8 @@ class ProductService
         try {
             $product->fill($data);
             $product->avatar = $image ?? $product->avatar;
-            $product->save(); 
-            return $product;        
+            $product->save();
+            return $product;
         } catch (QueryException $e) {
             throw new \Exception('Lỗi update sản phẩm: ' . $e->getMessage());
         }
@@ -89,7 +89,7 @@ class ProductService
         return new ProductResource($product);
     }
 
-    public function getProducts($categoryId, $type, $variants, $perPage, $start, $end)
+    public function getProducts($categoryId, $type, $variants, $perPage, $start, $end, $name)
     {
         $products = Product::query();
         if ($variants) {
@@ -115,6 +115,7 @@ class ProductService
             };
         }
 
+
         if ($start && $end) {
             $products = $products->whereRaw('(price <= ? AND price >= ?)', [$end, $start]);
         } else if ($start) {
@@ -123,6 +124,22 @@ class ProductService
             $products = $products->where('price', '<=', $end);
         }
 
+        if ($name) {
+            $products = $products->where(function ($query) use ($name) {
+                $query->where('name', 'like', "%{$name}%");
+            });
+            if ($products->count() == 0) {
+                return [
+                    'data' => [],
+                    'meta' => [
+                        'current_page' => 1,
+                        'last_page' => 1,
+                        'total' => 1,
+                        'per_page' => 1,
+                    ],
+                ];
+            }
+        }
 
         $products = $products->paginate($perPage);
         return [

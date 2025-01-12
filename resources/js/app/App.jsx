@@ -3,8 +3,11 @@ import { Fragment } from 'react';
 
 import { publicRoutes, privateRoutes } from '../routes';
 import layouts from '../layouts';
+import ProtectedRoute from '~/routes/ProtectedRoute';
+import { useAuth } from '~/hooks/useAuth';
 
 const App = () => {
+    const { isAuthenticated, role } = useAuth();
     return (
         <Router>
             <div className="App">
@@ -32,7 +35,7 @@ const App = () => {
                         );
                     })}
 
-                    {/* {privateRoutes.map((route, index) => {
+                    {privateRoutes.map((route, index) => {
                         const Page = route.component;
 
                         let Layout = layouts.admin.default;
@@ -65,7 +68,7 @@ const App = () => {
                                 }
                             />
                         );
-                    })} */}
+                    })}
                 </Routes>
             </div>
         </Router>

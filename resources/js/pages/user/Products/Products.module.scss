@@ -57,6 +57,8 @@
 
             ul li {
                 list-style: none;
+            
+                
 
                 a {
                     text-decoration: none;
@@ -66,10 +68,27 @@
                     &:hover {
                         color: var(--primary-color);
                     }
+
+                    &.active {
+                        color: var(--primary-color);
+                    }
                 }
             }
 
         }
+    }
+
+    .product-list {
+        min-height: calc(100vh - 100px);
+    }
+
+    .no-products {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-size: 20px;
+        color: var(--text-color);
     }
 
     .pagination {

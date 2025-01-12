@@ -9,6 +9,8 @@ const routes = {
     user: {
         home: '/home',
         productList: '/products',
+        productCategoryList: '/products/:category_id',
+        productSearchList: '/products?search=:search',
         productDetail: '/product/:productId/:variantId',
         cart: '/cart',
     },

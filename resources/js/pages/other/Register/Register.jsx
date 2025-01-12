@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 
 import { CustomInput, PasswordInput } from '~/components/Input';
-import {Button} from '~/components/Button';
+import { Button } from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -21,22 +21,34 @@ const Register = () => {
 
     const onButtonClick = async () => {
         console.log(username, email, password, confirmPassword);
-        axios.post('/api/register', {
-            name: username,
-            email: email,
-            password: password
-        }).then((response) => {
-            if (response.data.status === 200) {
+        try {
+            const res = await axios.post('/api/register',
+                {
+                    name: username,
+                    email: email,
+                    password: password
+                },
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+            console.log(res);
+            if (res.status === 422) {
+                setEmailError(res.message);
+                setPasswordError(res.data.password);
+                return;
+            } else if (res.status === 201) {
                 toast.success('Đăng ký thành công');
                 setTimeout(() => {
-                    localStorage.setItem('token', response.data.token);
+                    // localStorage.setItem('token', response.data.token);
                 }, 3000);
-            } else {
-                toast.error('Đăng ký thất bại');
             }
-        }).catch((error) => {
-            toast.error('Đăng ký thất bại');
-        });
+            else toast.error('Đăng ký thất bại. Hãy sử dụng email khác');
+
+        } catch (error) {
+            toast.error('Đăng ký thất bại. Hãy sử dụng email khác');
+        };
     }
     return (
         <div>

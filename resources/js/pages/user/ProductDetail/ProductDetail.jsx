@@ -23,7 +23,7 @@ const getBreadcrumb = (title, categoryId, categoryName) => {
         },
         {
             title: categoryName,
-            link: `products?category_id=${categoryId}`,
+            link: `/products/${categoryId}`,
         },
         {
             title: title,
@@ -94,8 +94,6 @@ const ProductDetail = () => {
 
         fetchVariant();
     }, [variantId]);
-
-    console.log(variant);
 
     return (
         <Content breadcrumb={breadcrumb}>

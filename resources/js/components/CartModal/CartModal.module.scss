@@ -9,7 +9,7 @@
     display: none;
     animation: fadeIn ease-in 0.1s;
     cursor: default;
-    z-index: 1;
+    z-index: 9999;
 
     &::after {
         content: "";

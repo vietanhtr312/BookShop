@@ -1,11 +1,13 @@
 import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 
-import { useState, useNavigate } from 'react';
+import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { CustomInput, PasswordInput } from '~/components/Input';
-import {Button} from '~/components/Button';
+import { Button } from '~/components/Button';
+import { useAuth } from '~/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -14,23 +16,37 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
+    const { handleLogin, handleLogout } = useAuth();
+    const navigate = useNavigate();
 
     const onButtonClick = async () => {
-        axios.post('login', {
-            email: email,
-            password: password
-        }).then((response) => {
-            if (response.data.status === 200) {
+        try {
+            const response = await axios.post('/api/login', {
+                email: email,
+                password: password
+            });
+            console.log('response: ', response);
+            if (response.status === 200) {
                 toast.success('Đăng nhập thành công');
                 setTimeout(() => {
-                    localStorage.setItem('token', response.data.token);
+                    handleLogin(response.data.token, response.data.role, response.data.user_id);
+                    const nextUrl = localStorage.getItem('nextUrl');
+                    if (nextUrl) {
+                        navigate('/');
+                    } else {
+                        if (response.data.role === 'user') {
+                            navigate('/');
+                        } else if (response.data.role === 'admin') {
+                            navigate('/admin/products');
+                        }
+                    }
                 }, 3000);
             } else {
                 toast.error('Đăng nhập thất bại');
             }
-        }).catch((error) => {
-            toast.error('Đăng nhập thất bại');
-        });
+        } catch (error) {
+            console.log('Lỗi đăng nhập: ', error);
+        }
     }
 
     return (

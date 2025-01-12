@@ -12,7 +12,7 @@ const ActionButtons = ({ selected, productId, variantId, disabled }) => {
     const { handleAddToCart } = useCart();
     
     const addItemToCart = async () => {
-        await handleAddToCart(variantId, selected.size, selected.quantity);
+        await handleAddToCart(variantId, selected.quantity);
     };
 
     return (
