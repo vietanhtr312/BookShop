@@ -1,17 +1,68 @@
 import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
 
 import styles from './AdminLayout.module.scss';
+import Navbar from '~/components/Navbar/Navbar';
+import Header from '../components/Header';
+import Sidebar from '~/components/Sidebar';
+import config from '~/config';
+import { useAuth } from '~/hooks/useAuth';
 
 const cx = classNames.bind(styles);
 
-const AdminLayout = ({ children }) => {
+const ITEMS = [
+    {
+        type: 'dashboard',
+        title: 'Trang chủ',
+        to: '/',
+    },
+    {
+        type: 'product',
+        title: 'Sản phẩm',
+        children: [
+            {
+                type: 'product_create',
+                title: 'Thêm mới',
+                to: config.routes.admin.productCreate,
+            },
+            {
+                type: 'product_list',
+                title: 'Danh sách',
+                to: config.routes.admin.productList,
+            },
+        ],
+    },
+    {
+        type: 'customers',
+        title: 'Đơn hàng',
+        to: '/admin/orders',
+    },
+    {
+        type: 'revenue',
+        title: 'Doanh thu',
+        to: config.routes.admin.productDetail,
+    },
+];
+
+function AdminLayout({ children }) {
+    const { user, handleLogout } = useAuth();
     return (
-        <div className={cx('admin-layout', 'grid wide')}>
-            {/* <Header /> */}
-            {children}
-            {/* <Footer /> */}
+        <div className={cx('admin-layout')}>
+            <Navbar handleLogout={handleLogout}/>
+            <Header />
+            <div className={cx('body')}>
+                <div className={cx('body-left')}>
+                    <Sidebar items={ITEMS} />
+                </div>
+                <div className={cx('body-right')}>{children}</div>
+            </div>
+            <div className={cx('footer')}></div>
         </div>
     );
+}
+
+AdminLayout.propTypes = {
+    children: PropTypes.node.isRequired,
 };
 
 export default AdminLayout;

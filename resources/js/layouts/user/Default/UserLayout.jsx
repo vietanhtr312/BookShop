@@ -10,10 +10,10 @@ import Footer from '../components/Footer/Footer';
 import { useAuth } from '~/hooks/useAuth';
 
 const UserLayout = ({ children }) => {
-    const { fetchUser } = useAuth();
+    const { user, fetchUser, handleLogout } = useAuth();
     return (
         <div className={cx('user-layout')}>
-            <Navbar />
+            <Navbar user={user} fetchUser={fetchUser} handleLogout={handleLogout}/>
             <Header />
             {children}
             <Footer />

@@ -1,6 +1,6 @@
 @use "header";
 .wrapper {
-    height: var(--header-height);
+    height: calc(var(--header-height) - 10px);
     background-image: linear-gradient(0, #f25314, #ff2f00);
     width: 100%;
 }

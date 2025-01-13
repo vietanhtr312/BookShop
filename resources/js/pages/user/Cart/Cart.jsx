@@ -8,11 +8,10 @@ const cx = classNames.bind(styles);
 const Cart = () => {
     return (
         <div className={cx('cart-page')}>
-            <div className={cx('cart-left')}>
+            <div className={cx('cart-left', 'grid wide')}>
                 <CartStep step={1} />
                 <div className={cx('cart-content')}></div>
             </div>
-            <div className={cx('cart-right')}></div>
         </div>
     );
 };

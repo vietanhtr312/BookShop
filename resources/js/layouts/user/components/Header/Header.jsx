@@ -10,14 +10,16 @@ import { faCartShopping, faUser, faMagnifyingGlass } from '@fortawesome/free-sol
 import CartModal from '~/components/CartModal/CartModal';
 import config from '~/config';
 import { useCart } from '~/hooks/useCart';
+import { useSearch } from '~/hooks/useSearch';
 
 function Header() {
     const { cartData } = useCart();
     console.log(cartData);
+    const { search, handleSearch } = useSearch();
 
     const categories = [];
     const [searchTerm, setSearchTerm] = useState('');
-    const [itemsCount, setItemsCount] = useState(cartData?.count);
+    const [itemsCount, setItemsCount] = useState(cartData?.count || 0);
     const [totalAmount, setTotalAmount] = useState(0);  
 
     const handleSearchTerm = (e) => {
@@ -42,7 +44,7 @@ function Header() {
                         <li>
                             <Link to="">
                                 <FontAwesomeIcon icon={faCartShopping} />
-                                <i className={cx('fa-solid fa-cart-shopping')}><span>{itemsCount ?? 0}</span></i>
+                                <i className={cx('fa-solid fa-cart-shopping')}><span>{itemsCount || 0}</span></i>
                             </Link>
                         </li>
                     </ul>
@@ -95,7 +97,7 @@ function Header() {
                                 <div className={cx("search-input-wrap")}>
                                     <input type="search" placeholder="Tìm kiếm sản phẩm" spellCheck={false} onChange={(e) => handleSearchTerm(e)} />
                                 </div>
-                                <Link to={`/products?search=${searchTerm}`} ><button><FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon></button></Link>
+                                <Link to={`/products?${searchTerm}`} ><button onClick={() => handleSearch(searchTerm)}><FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon></button></Link>
                             </div>
                         </div>
 
@@ -103,7 +105,7 @@ function Header() {
                             <div className={cx("cart-wrap")}>
                                 <Link to={''}>
                                     <FontAwesomeIcon icon={faCartShopping} className={cx('')}/>
-                                    <span className={cx('cart-qty')}>{itemsCount}</span>
+                                    <span className={cx('cart-qty')}>{cartData?.count || 0}</span>
                                 </Link>
                                 <CartModal />
                             </div>
@@ -129,7 +131,7 @@ function Header() {
                             <div className={cx("search-input-wrap")}>
                                 <input type="search" placeholder="Tìm kiếm sản phẩm" spellCheck={false} onChange={(e) => handleSearchTerm(e)} />
                             </div>
-                            <Link to={`search/${searchTerm}`}><button><i className={cx("fa-solid fa-magnifying-glass")}></i></button></Link>
+                            <Link to={`/products?${searchTerm}`}><button onClick={() => handleSearch(searchTerm)}><i className={cx("fa-solid fa-magnifying-glass")}></i></button></Link>
                         </div>
                     </div>
                 </div>

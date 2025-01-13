@@ -5,6 +5,7 @@ import styles from './Register.module.scss';
 import { useState, useNavigate } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { CustomInput, PasswordInput } from '~/components/Input';
 import { Button } from '~/components/Button';
@@ -96,6 +97,13 @@ const Register = () => {
                         <br />
                         <div className={cx('buttonContainer')}>
                             <Button onClick={onButtonClick} primary width='100%' large>ĐĂNG KÝ </Button>
+                        </div>
+
+                        <div className={cx('login')}>
+                            <span>Đã có tài khoản?</span>
+                            <Link className={cx('login-btn')} to={'/login'}>
+                                Đăng nhập
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,9 @@ import axios from 'axios';
 import { CustomInput, PasswordInput } from '~/components/Input';
 import { Button } from '~/components/Button';
 import { useAuth } from '~/hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import images from '~/assets/images';
+import { Image } from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -25,11 +27,11 @@ const Login = () => {
                 email: email,
                 password: password
             });
-            console.log('response: ', response);
             if (response.status === 200) {
+                // console.log('response: ', response);
                 toast.success('Đăng nhập thành công');
                 setTimeout(() => {
-                    handleLogin(response.data.token, response.data.role, response.data.user_id);
+                    handleLogin(response.data.token, response.data.role, response.data.user_id, response.data.user);
                     const nextUrl = localStorage.getItem('nextUrl');
                     if (nextUrl) {
                         navigate('/');
@@ -79,6 +81,30 @@ const Login = () => {
                         <br />
                         <div className={cx('buttonContainer')}>
                             <Button onClick={onButtonClick} primary width='100%' large>ĐĂNG NHẬP </Button>
+                        </div>
+
+                        <div className={cx('bottomContainer')}>
+                            <div className={cx('other')}>
+                                <div className={cx('line')}>
+                                    <span>Hoặc</span>
+                                </div>
+    
+                                <Button className={cx('logo-btn')} width="50%" outline contentCenter>
+                                    <Image className={cx('logo-icon')} src={images.ggLogo} />
+                                    <span className="mobile-hidden">Facebook</span>
+                                </Button>
+                                <Button className={cx('logo-btn')} width="50%" outline contentCenter>
+                                    <Image className={cx('logo-icon')} src={images.fbLogo} />
+                                    <span className="mobile-hidden">Google</span>
+                                </Button>
+                            </div>
+    
+                            <div className={cx('register')}>
+                                <span>Đây là lần đầu của bạn?</span>
+                                <Link className={cx('register-btn')} to={'/register'}>
+                                    Đăng ký
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,11 @@
 import { createContext, useEffect, useState } from 'react';
 import { addToCart, getCarts, udpateCart } from '~/services/cartService';
+import { useAuth } from '~/hooks/useAuth';
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-    const userId = 1;
+    const { userId } = useAuth();
     const [cartData, setCartData] = useState({});
     const [cartItem, setCartItem] = useState({
         variant_id: '',

@@ -5,8 +5,10 @@ import images from '~/assets/images';
 
 const cx = classNames.bind(styles)
 
-function Navbar ({ ...props }) {
-    const { setLoggedIn, loggedIn, email } = props
+function Navbar({ ...props }) {
+    const { handleLogout } = props
+    const userId = localStorage.getItem('userId');
+    const user = JSON.parse(localStorage.getItem('user'));
     return (
         <div className={cx('wrapper')}>
             <div className='grid wide'>
@@ -32,7 +34,7 @@ function Navbar ({ ...props }) {
                             </Link>
                         </li>
                     </ul>
-        
+
                     <ul className={cx("nav__list")}>
                         <li className={cx("nav__item", "nav__item--has-notify")}>
                             <Link to="" className={cx("nav__item-link")}>
@@ -52,22 +54,33 @@ function Navbar ({ ...props }) {
                                 Trợ giúp
                             </Link>
                         </li>
-        
-                        {loggedIn ? (<li className={cx("nav__item", "nav-user")}>
+
+                        {userId ? (<li className={cx("nav__item", "nav-user")}>
                             <i className={cx("fa-regular fa-user")}></i>
-                            <span>{email}</span>
+                            <span>{user.name}</span>
                             <ul >
-                                <li><Link to={ROUTERS.USER.HOME}>Tài khoản của tôi</Link></li>
-                                <li><Link to="">Địa chỉ</Link></li>
-                                <li><Link to="">Đơn mua</Link></li>
+                                <li><Link to={'/'}>Tài khoản của tôi</Link></li>
+                                {user.role === 'admin' ? <li><Link to="/admin/products">Admin</Link></li> :
+                                    <>
+                                        <li><Link to="">Địa chỉ</Link></li>
+                                        <li><Link to="">Đơn mua</Link></li>
+                                    </>
+                                }
                                 <li onClick={() => {
-                                    localStorage.removeItem('user')
-                                    setLoggedIn(false)
+                                    handleLogout()
+                                    window.location.reload()
                                 }}><Link to="">Đăng xuất</Link></li>
                             </ul>
-                        </li>) : <li className={cx("nav__item")}>
-                            <Link to="/login" className={cx("nav__item--strong", "nav__item-link")}>Đăng nhập</Link>
-                        </li>}
+                        </li>) :
+                            <>
+                                <li className={cx("nav__item")}>
+                                    <Link to="/login" className={cx("nav__item--strong", "nav__item-link")}>Đăng nhập</Link>
+                                </li>
+                                <li className={cx("nav__item")}>
+                                    <Link to="/register" className={cx("nav__item--strong", "nav__item-link")}>Đăng ký</Link>
+                                </li>
+                            </>
+                        }
                     </ul>
                 </nav>
             </div>

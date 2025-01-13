@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const addToCart = async (cart) => {
     try {
@@ -12,8 +13,10 @@ export const addToCart = async (cart) => {
         if (response.status === 200) {
             return response.data;
         }
+
     } catch (error) {
-        console.log('Lối thêm vào giỏ hàng', error);
+        console.log('Lỗi thêm vào giỏ hàng', error);
+        toast.error("Vui lòng đăng nhập tài khoản");
     }
 };
 

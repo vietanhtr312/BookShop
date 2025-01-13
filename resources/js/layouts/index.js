@@ -1,6 +1,6 @@
 import UserLayout from './user/Default/UserLayout';
-import AdminLayout from './admin/Default/AdminLayout';
 import NoHeaderLayout from './other/NoHeader/NoHeaderLayout';
+import AdminLayout from './admin/Default';
 
 const layouts = {
     admin: {

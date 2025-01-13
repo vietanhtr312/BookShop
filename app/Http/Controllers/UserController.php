@@ -100,12 +100,29 @@ class UserController extends Controller
             return response()->json([
                 'token' => $token,
                 'role' => $user->role,
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'user' => $user,
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Login error: ' . $e->getMessage()
             ], 500);
         }
+    }
+
+    public function getUser(Request $request) {
+        $userId = $request->query("user_id");
+        $user = User::where("user_id", $userId)->first();
+
+        if (!$user) {
+            return response()->json([
+                'message' => "Không tìm thấy thông tin tài khoản",
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => "Lấy thành công thông tin tài khoản",
+            'user' => $user,
+        ], 200);
     }
 }

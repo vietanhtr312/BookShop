@@ -12,6 +12,7 @@ import InfoDetail from './InfoDetail';
 import ProductList from '~/components/ProductList';
 import { getCopies } from '~/services/copyService';
 import Content from '~/components/Content';
+import { ToastContainer } from 'react-toastify';
 
 const cx = classNames.bind(styles);
 
@@ -117,6 +118,7 @@ const ProductDetail = () => {
                     </div>
                 </div>
             )}
+            <ToastContainer />
         </Content>
     );
 };

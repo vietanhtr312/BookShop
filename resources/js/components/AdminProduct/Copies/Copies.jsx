@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Copies.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPalette } from '@fortawesome/free-solid-svg-icons';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { getCopy, getCopies } from '~/services/copyService';
 
 const cx = classNames.bind(styles);
@@ -57,7 +57,7 @@ const Copies = ({ id, setId, name, setName, error, clearError = fn }) => {
                     <span>
                         Bản sách:<span className={cx('required')}>*</span>:
                     </span>
-                    <FontAwesomeIcon icon={faPalette} />
+                    <FontAwesomeIcon icon={faBook} />
                     {show && (
                         <div className={cx('copies-table')}>
                             {copies &&

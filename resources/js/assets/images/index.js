@@ -12,6 +12,8 @@ import logo from './logo.svg';
 import emptyCart from './empty_cart.png';
 import prod1 from './prod_1.webp';
 import done from './done.png';
+import fbLogo from './logo_fb.png';
+import ggLogo from './logo_gg.png';
 
 const images = {
     banner1,
@@ -28,6 +30,8 @@ const images = {
     emptyCart,
     prod1,
     done,
+    fbLogo,
+    ggLogo
 };
 
 export default images;

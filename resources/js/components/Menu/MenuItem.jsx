@@ -19,6 +19,7 @@ const formatContent = (content) => {
 const MenuItem = ({ data, onClick }) => {
     return (
         <Button
+            secondary
             classname={cx('menu-item')}
             leftIcon={data.leftIcon}
             rightIcon={data.rightIcon}

@@ -1,5 +1,6 @@
 .wrapper {
     background-image: linear-gradient(0, #f25314, #ff2f00);
+    width: 100%;
 }
 
 .navbar {
@@ -57,6 +58,11 @@
         list-style: none;
         box-shadow: 0 0 3px #ccc;
         display: none;
+        font-size: 14px;
+
+        li {
+            line-height: 24px;
+        }
 
         &::after {
             content: "";

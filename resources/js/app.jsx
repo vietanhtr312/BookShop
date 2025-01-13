@@ -5,6 +5,7 @@ import App from './app/App';
 import GlobalStyles from './components/GlobalStyles';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
+import { SearchProvider } from './context/SearchContext';
 
 const app = ReactDOM.createRoot(document.getElementById('app'));
 app.render(
@@ -12,7 +13,9 @@ app.render(
         <GlobalStyles>
             <AuthProvider>
                 <CartProvider>
-                    <App />
+                    <SearchProvider>
+                        <App />
+                    </SearchProvider>
                 </CartProvider>
             </AuthProvider>
         </GlobalStyles>

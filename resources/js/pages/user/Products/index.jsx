@@ -12,6 +12,7 @@ import { getCategories } from "~/services/categoryService";
 import Pagination from "~/components/Pagination";
 import { Button } from "~/components/Button";
 import LoadingPage from "~/pages/other/Loading";
+import { useSearch } from "~/hooks/useSearch";
 
 const getBreadcrumbs = (category = null) => [
     {
@@ -67,9 +68,10 @@ const Products = () => {
     const [categoryId, setCategoryId] = useState(category_id || null);
     const [breadcrumbs, setBreadcrumbs] = useState(getBreadcrumbs());
     const [changePrice, setChangePrice] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
-    const params = new URLSearchParams(window.location.search);
-    const search = params.get('search');
+    const { search } = useSearch();
+    useEffect(() => {
+        navigate(`/products?search=${search}`);
+    }, [search]);
 
     const handleSortProduct = (sort) => {
         setSortType(sort.value);
@@ -85,7 +87,6 @@ const Products = () => {
     }
 
     useEffect(() => {
-        setSearchTerm(search || '');
         fetchCategories();
     }, []);
 
@@ -94,7 +95,7 @@ const Products = () => {
         const tempProducts = []
         setLoading(true);
         try {
-            const res = await getProducts(sortType, currentPage, categoryId, true, 9, lowerPrice, upperPrice, searchTerm);
+            const res = await getProducts(sortType, currentPage, categoryId, true, 9, lowerPrice, upperPrice, search);
             console.log(res);
             tempProducts.push(...res.products.data);
             setTotalPage(res.products.meta.last_page);
@@ -111,7 +112,7 @@ const Products = () => {
 
     useEffect(() => {
         fetchProducts();
-    }, [ categories, searchTerm, categoryId, sortType, changePrice, currentPage]);
+    }, [ categories, categoryId, sortType, changePrice, currentPage, search]);
 
     const handleChangeCategory = (id) => {
         setCategoryId(id);

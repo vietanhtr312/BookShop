@@ -10,6 +10,7 @@ import ListHeader from './Part/ListHeader';
 import LoadingPage from '~/pages/other/Loading';
 import { getProducts, deleteProduct } from '~/services/productService';
 import { ToastContainer, toast } from 'react-toastify';
+import { useSearch } from '~/hooks/useSearch';
 
 const cx = classNames.bind(styles);
 
@@ -31,11 +32,12 @@ const AdminProductList = () => {
     const [totalPage, setTotalPage] = useState(1);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const { search } = useSearch();
 
     const fetchProducts = async (typeP, pageP) => {
         setLoading(true);
         try {
-            const response = await getProducts(typeP, pageP);
+            const response = await getProducts(typeP, pageP, null, true, 10, null, null, search);
             setProducts(response.products.data);
             setTotalPage(response.products.meta.last_page);
         } catch (error) {
@@ -48,7 +50,7 @@ const AdminProductList = () => {
     useEffect(() => {
         fetchProducts(type, page);
         window.scrollTo(0, 0);
-    }, [type, page]);
+    }, [type, page, search]);
 
     const handleDeleteProduct = async (id) => {
         const confirmDelete = window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');

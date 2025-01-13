@@ -14,6 +14,7 @@ const ActionsBtns = ({ step, loading, setStep, setNext, continueCreateProduct })
             {step === 1 ? (
                 <div className={cx('step-one-btn')}>
                     <Button
+                        secondary
                         type="button"
                         onClick={() => setNext(true)}
                         rightIcon={<FontAwesomeIcon icon={faArrowRight} />}
@@ -23,10 +24,11 @@ const ActionsBtns = ({ step, loading, setStep, setNext, continueCreateProduct })
                 </div>
             ) : step === 2 ? (
                 <div className={cx('step-two-btn')}>
-                    <Button type="button" onClick={() => setStep(1)} leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}>
+                    <Button secondary type="button" onClick={() => setStep(1)} leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}>
                         Quay lại
                     </Button>
                     <Button
+                        secondary
                         type="button"
                         onClick={() => setNext(true)}
                         rightIcon={<FontAwesomeIcon icon={faArrowRight} />}
@@ -39,6 +41,7 @@ const ActionsBtns = ({ step, loading, setStep, setNext, continueCreateProduct })
                     {loading === false && (
                         <>
                             <Button
+                                secondary
                                 type="button"
                                 onClick={continueCreateProduct}
                                 leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}
@@ -46,6 +49,7 @@ const ActionsBtns = ({ step, loading, setStep, setNext, continueCreateProduct })
                                 Tiếp tục tạo
                             </Button>
                             <Button
+                                secondary
                                 type="button"
                                 to={'/admin/products'}
                                 rightIcon={<FontAwesomeIcon icon={faArrowRight} />}

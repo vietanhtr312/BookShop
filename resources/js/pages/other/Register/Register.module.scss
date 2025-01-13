@@ -55,3 +55,21 @@
     margin-top: 10px;
     padding: 0 12px;
 }
+
+.login {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.login-btn {
+    color: var(--primary);
+    font-weight: var(--font-bold);
+    margin-left: 10px;
+
+    &:hover {
+        color: var(--primary-75);
+    }
+}
