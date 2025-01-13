@@ -13,6 +13,7 @@ const Button = ({
     secondary = false,
     noBackground = false,
     text = false,
+    normal = false,
 
     shadow = false,
     disabled = false,
@@ -65,6 +66,7 @@ const Button = ({
         secondary,
         'no-background': noBackground,
         text,
+        normal,
 
         shadow,
         disabled,

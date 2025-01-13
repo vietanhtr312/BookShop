@@ -5,7 +5,7 @@ import { faPlusCircle, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Steps.module.scss';
 import useVariants from '~/hooks/useVariants';
-import { UploadImages } from '~/components/UploadImage';
+import { UploadImages } from '~/components/Image/UploadImage';
 import { Copies, Quantity } from '~/components/AdminProduct';
 import { Input } from '~/components/Input';
 

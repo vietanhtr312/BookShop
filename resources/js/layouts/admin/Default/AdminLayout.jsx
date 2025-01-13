@@ -2,9 +2,9 @@ import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 
 import styles from './AdminLayout.module.scss';
-import Navbar from '~/components/Navbar/Navbar';
+import Navbar from '~/components/PageComp/Navbar/Navbar';
 import Header from '../components/Header';
-import Sidebar from '~/components/Sidebar';
+import Sidebar from '~/components/PageComp/Sidebar';
 import config from '~/config';
 import { useAuth } from '~/hooks/useAuth';
 

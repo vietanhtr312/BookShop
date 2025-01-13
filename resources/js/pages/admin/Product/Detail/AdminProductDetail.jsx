@@ -9,7 +9,7 @@ import { deleteVariants, getVariants, updateVariant } from '~/services/variantSe
 
 import StepOne from '../Create/Steps/StepOne';
 import StepTwo from '../Create/Steps/StepTwo';
-import Content from '~/components/Content';
+import Content from '~/components/ContentWrap/Content';
 import LoadingPage from '~/pages/other/Loading';
 import { Button } from '~/components/Button';
 import { ToastContainer, toast } from 'react-toastify';

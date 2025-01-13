@@ -3,9 +3,9 @@ import { useSearchParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
 import styles from './List.module.scss';
-import Content from '~/components/Content';
+import Content from '~/components/ContentWrap/Content';
 import Table from './Table/Table';
-import Pagination from '~/components/Pagination';
+import Pagination from '~/components/PageComp/Pagination';
 import ListHeader from './Part/ListHeader';
 import LoadingPage from '~/pages/other/Loading';
 import { getProducts, deleteProduct } from '~/services/productService';

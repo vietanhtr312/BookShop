@@ -3,13 +3,13 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import styles from './Products.module.scss';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from "react";
-import ProductCard from "~/components/ProductCard";
-import Content from "~/components/Content";
+import ProductCard from "~/components/Product/ProductCard";
+import Content from "~/components/ContentWrap/Content";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { getProducts } from "~/services/productService";
 import { getCategories } from "~/services/categoryService";
-import Pagination from "~/components/Pagination";
+import Pagination from "~/components/PageComp/Pagination";
 import { Button } from "~/components/Button";
 import LoadingPage from "~/pages/other/Loading";
 import { useSearch } from "~/hooks/useSearch";
@@ -96,7 +96,7 @@ const Products = () => {
         setLoading(true);
         try {
             const res = await getProducts(sortType, currentPage, categoryId, true, 9, lowerPrice, upperPrice, search);
-            console.log(res);
+            // console.log(res);
             tempProducts.push(...res.products.data);
             setTotalPage(res.products.meta.last_page);
             setBreadcrumbs(getBreadcrumbs(categories.find(c => c.id === categoryId)));

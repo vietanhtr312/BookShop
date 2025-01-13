@@ -19,7 +19,7 @@ function Footer() {
                                 <Link href="#" className={cx("item-link")}>Mall</Link>
                                 <Link href="#" className={cx("item-link")}>Hướng dẫn mua hàng</Link>
                                 <Link href="#" className={cx("item-link")}>Thanh Toán</Link>
-                                <Link href="#" className={cx("item-link")}>Shopee Xu</Link>
+                                <Link href="#" className={cx("item-link")}>Shop Xu</Link>
                                 <Link href="#" className={cx("item-link")}>Vận Chuyển</Link>
                                 <Link href="#" className={cx("item-link")}>Trả Hàng & Hoàn Tiền</Link>
                                 <Link href="#" className={cx("item-link")}>Chăm Sóc Khách Hàng</Link>

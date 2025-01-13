@@ -62,3 +62,15 @@
 .custom-input:focus-within label {
     @extend .label-active;
 }
+
+.message {
+    width: 100%;
+    padding-left: 5px;
+    color: var(--secondary-75);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.error-message {
+    color: var(--error-color);
+}

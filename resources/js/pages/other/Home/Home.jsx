@@ -4,12 +4,11 @@ import "react-multi-carousel/lib/styles.css";
 import { Link } from 'react-router-dom';
 
 import images from '~/assets/images';
-import ProductList from '~/components/ProductList';
-import Banner from '~/components/Banner';
+import ProductList from '~/components/Product/ProductList';
+import Banner from '~/components/PageComp/Banner';
 
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
-import axios from 'axios';
 import { getCategories } from '~/services/categoryService';
 import { getProducts } from '~/services/productService';
 import LoadingPage from '../Loading';
@@ -112,20 +111,6 @@ const Home = () => {
 
                     </div>
                 </div>
-            </div>
-
-            <div className={cx("banner-wrapper")}>
-                <div className={cx("banner")}>
-                    <div className="row">
-                        <Link to='' className={cx("banner-pic col l-6 m-6 c-12")}>
-                            <img src={images.banner1} alt="Banner" />
-                        </Link>
-                        <Link to='' className={cx("banner-pic col l-6 m-6 c-12")}>
-                            <img src={images.banner2} alt="Banner" />
-                        </Link>
-                    </div>
-                </div>
-
             </div>
         </div>
     );

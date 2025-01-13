@@ -7,7 +7,7 @@ const SearchProvider = ({ children }) => {
 
     const handleSearch = (searchT) => {
         setSearch(searchT);
-        console.log(searchT);
+        // console.log(searchT);
     }
 
     return (

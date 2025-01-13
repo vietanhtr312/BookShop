@@ -8,8 +8,7 @@ export const createProduct = async (product) => {
             }
         });
 
-        // const token = localStorage.getItem('token');
-        const token = '344fd9b764239d1558a6b2877456f81a3d5cdd9c9049860a1a05b8f5020914a4'
+        const token = localStorage.getItem('token');
 
         const response = await axios.post('/api/product/create', formData, {
             headers: {

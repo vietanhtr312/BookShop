@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './Steps.module.scss';
 import useProduct from '~/hooks/useProduct';
 import { Input } from '~/components/Input';
-import { UploadImage } from '~/components/UploadImage';
+import { UploadImage } from '~/components/Image/UploadImage';
 import { Categories, Informations, Price } from '~/components/AdminProduct';
 
 const cx = classNames.bind(styles);

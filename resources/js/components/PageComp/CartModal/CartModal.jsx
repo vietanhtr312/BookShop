@@ -1,7 +1,7 @@
 import styles from './CartModal.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import { formatPrice } from "../../utils/formarter";
+import { formatPrice } from '~/utils/formarter';
 import images from '~/assets/images';
 import { useCart } from '~/hooks/useCart';
 

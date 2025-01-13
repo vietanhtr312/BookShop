@@ -4,9 +4,9 @@ import styles from './UserLayout.module.scss';
 
 const cx = classNames.bind(styles);
 
-import Navbar from '~/components/Navbar/Navbar';
+import Navbar from '~/components/PageComp/Navbar/Navbar';
 import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+import Footer from '../../common/Footer/Footer';
 import { useAuth } from '~/hooks/useAuth';
 
 const UserLayout = ({ children }) => {

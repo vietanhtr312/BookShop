@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './AdminProductCreate.module.scss';
-import Content from '~/components/Content';
+import Content from '~/components/ContentWrap/Content';
 import StepOne from './Steps/StepOne';
 import StepTwo from './Steps/StepTwo';
 import StepThree from './Steps/StepThree';

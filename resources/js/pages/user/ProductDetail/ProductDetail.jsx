@@ -9,9 +9,9 @@ import LoadingPage from '~/pages/other/Loading';
 import ImageSlider from './ImageSlider';
 import images from '~/assets/images';
 import InfoDetail from './InfoDetail';
-import ProductList from '~/components/ProductList';
+import ProductList from '~/components/Product/ProductList';
 import { getCopies } from '~/services/copyService';
-import Content from '~/components/Content';
+import Content from '~/components/ContentWrap/Content';
 import { ToastContainer } from 'react-toastify';
 
 const cx = classNames.bind(styles);

@@ -4,7 +4,7 @@
     justify-content: center;
     gap: 10px;
     font-weight: 600;
-    color: white;
+    color: var(--text-color);
     border-radius: 2px;
     cursor: pointer;
     user-select: none;
@@ -48,7 +48,16 @@
     margin-left: calc(var(--font-size) / 2);
 }
 
+
+
 // Type
+
+.normal {
+    &:hover {
+        background-color: var(--hover-item);
+    }
+}
+
 .text {
     background-color: transparent;
     color: var(--text-color);
@@ -58,8 +67,8 @@
         background-color: var(--hover-item);
     }
     &.active {
-        color: white;
-        background-color: var(--cl-primary);
+        color: var(--text-color);
+        background-color: var(--cl-secondary);
     }
 }
 

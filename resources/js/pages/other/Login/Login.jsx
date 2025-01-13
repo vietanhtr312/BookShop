@@ -10,6 +10,7 @@ import { useAuth } from '~/hooks/useAuth';
 import { useNavigate, Link } from 'react-router-dom';
 import images from '~/assets/images';
 import { Image } from '~/components/Image';
+import background from '~/assets/background';
 
 const cx = classNames.bind(styles);
 
@@ -54,7 +55,7 @@ const Login = () => {
     return (
         <div>
             <div className={cx('login_page')}>
-                <div className={cx('smallContainer')} style={{ backgroundImage: 'url(https://down-vn.img.susercontent.com/file/sg-11134004-7rdww-lz7fzhaqivg745)' }}>
+                <div className={cx('smallContainer')} style={{ backgroundImage: `url(${background.background1})` }}>
                     <div className={cx('mainContainer')}>
                         <div className={cx('titleContainer')}>
                             <div>Đăng nhập</div>

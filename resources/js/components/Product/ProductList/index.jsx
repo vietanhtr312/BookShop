@@ -1,6 +1,6 @@
-import ProductCard from "../ProductCard";
 import classNames from 'classnames/bind';
 import styles from './ProductList.module.scss';
+import ProductCard from '../ProductCard';
 
 const cx = classNames.bind(styles);
 

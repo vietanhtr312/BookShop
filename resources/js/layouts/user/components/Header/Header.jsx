@@ -7,14 +7,14 @@ import { formatPrice } from '~/utils/formarter';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import CartModal from '~/components/CartModal/CartModal';
+import CartModal from '~/components/PageComp/CartModal';
 import config from '~/config';
 import { useCart } from '~/hooks/useCart';
 import { useSearch } from '~/hooks/useSearch';
 
 function Header() {
     const { cartData } = useCart();
-    console.log(cartData);
+    // console.log(cartData);
     const { search, handleSearch } = useSearch();
 
     const categories = [];

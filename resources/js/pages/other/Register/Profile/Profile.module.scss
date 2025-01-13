@@ -1,0 +1,36 @@
+.register-profile {
+    width: 100%;
+    height: fit-content;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 12px var(--secondary);
+    background-color: var(--background);
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+.next-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-size: var(--font-size-larger);
+    font-weight: var(--font-bold);
+    text-align: center;
+}
+
+.two-items {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+}

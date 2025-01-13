@@ -1,5 +1,5 @@
-import banner1 from './banner1.webp';
-import banner2 from './banner2.webp';
+import banner1 from './banner1.png';
+import banner2 from './banner2.png';
 import banner from './banner.png';
 import cat_1 from './cate_homepage_kinhte.webp';
 import cat_2 from './cate_homepage_thieunhi.webp';
@@ -8,7 +8,9 @@ import cat_4 from './cate_homepage_ngoaivan.webp';
 import ggPlay from './ggplay.png';
 import appStore from './appstore.png';
 import qrCode from './qr_code.png';
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import logo from './custom-logo.png'
+import logo1 from './custom-logo1.png'
 import emptyCart from './empty_cart.png';
 import prod1 from './prod_1.webp';
 import done from './done.png';
@@ -27,6 +29,7 @@ const images = {
     appStore,
     qrCode,
     logo,
+    logo1,
     emptyCart,
     prod1,
     done,

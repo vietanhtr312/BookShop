@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import classNames from 'classnames/bind';
 import styles from './ProductCard.module.scss';
-import { formatPrice } from "../../utils/formarter";
 import images from "~/assets/images";
 import { useState } from "react";
+import { formatPrice } from "~/utils/formarter";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faCartShopping } from "@fortawesome/free-solid-svg-icons";
