@@ -16,6 +16,9 @@ import prod1 from './prod_1.webp';
 import done from './done.png';
 import fbLogo from './logo_fb.png';
 import ggLogo from './logo_gg.png';
+import momo from './momo.jpg';
+import atm from './atm.jpg';
+import onepay from './onepay.png';
 
 const images = {
     banner1,
@@ -34,7 +37,10 @@ const images = {
     prod1,
     done,
     fbLogo,
-    ggLogo
+    ggLogo,
+    momo,
+    atm,
+    onepay
 };
 
 export default images;

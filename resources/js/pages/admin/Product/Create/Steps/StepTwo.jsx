@@ -33,7 +33,7 @@ const StepTwo = ({
                 if (variants[i].copy_id === '') {
                     setVariants((prevVar) =>
                         prevVar.map((variant, index) =>
-                            index === i ? { ...variant, error: 'Vui lòng chọn màu' } : variant,
+                            index === i ? { ...variant, error: 'Vui lòng chọn bản' } : variant,
                         ),
                     );
                     setNext(false);

@@ -31,7 +31,6 @@ const responsive = {
 function Banner({ categories }) {
     const [isShowCategory, setIsShowCategory] = useState(true);
     const bannerImages = [images.banner, images.banner1, images.banner2];
-    console.log(bannerImages);
 
     return (
         <div>

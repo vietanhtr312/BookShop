@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Hash;
 
 class CartService
 {
-    public function addToCart(array $data) 
+    public function addToCart(array $data)
     {
         try {
             $cart = Cart::where('variant_id', $data['variant_id'])
-                        ->where('user_id', $data['user_id'])
-                        ->first();
+                ->where('user_id', $data['user_id'])
+                ->first();
             if ($cart) {
                 $cart->quantity += $data['quantity'];
             } else {
@@ -52,9 +52,19 @@ class CartService
         if ($cart) {
             $cart->delete();
             return 'Đã xóa thành công giỏ hàng';
-        } 
+        }
 
         return 'Không tìm thấy giỏ hàng';
+    }
+
+    public function deleteCarts($userId)
+    {
+        $carts = Cart::where('user_id', $userId)->get();
+        if ($carts)
+            foreach ($carts as $cart) {
+                $cart->delete();
+            }
+        return 'Đã xóa thành công giỏ hàng';
     }
 
 
@@ -75,6 +85,4 @@ class CartService
             'total' => $total
         ];
     }
-
-
 }

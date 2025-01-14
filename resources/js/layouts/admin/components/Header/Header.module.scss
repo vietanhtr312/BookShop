@@ -1,7 +1,7 @@
 @use "header";
 .wrapper {
     height: calc(var(--header-height) - 10px);
-    background-image: linear-gradient(0, #f25314, #ff2f00);
+    background-image: var(--cl-primary);
     width: 100%;
 }
 

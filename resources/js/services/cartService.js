@@ -58,6 +58,25 @@ export const deleteCart = async (cartId) => {
     }
 };
 
+export const deleteCarts = async (userId) => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axios.delete('/api/cart/deleteAll', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            params: {
+                user_id: userId,
+            },
+        });
+        if (response.status === 200) {
+            return response.data;
+        }
+    } catch (error) {
+        console.log('Lối lấy giỏ hàng', error);
+    }
+};
+
 export const getCarts = async (userId) => {
     try {
         const token = localStorage.getItem('token');

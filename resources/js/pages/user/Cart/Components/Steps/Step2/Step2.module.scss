@@ -1,0 +1,56 @@
+.wrapper {
+    background-color: #f5f5f5;
+    padding: 20px 0 0;
+}
+
+.content {
+    background-color: var(--white-color);
+    padding: 20px 8px;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    
+    input {
+        width: auto;
+        height: auto;
+    }
+
+    .content-left {
+        border-right: 2px solid #ddd;
+        padding-right: 16px;
+
+        h3 {
+            margin: 12px 0;
+        }
+
+        label {
+            padding: 4px 0;
+            user-select: none;
+        }
+
+        span {
+            font-size: 13px;
+            display: block;
+        }
+
+        .method_payment {
+            .method_payment-item {
+                padding: 6px 0;
+
+                img {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .content-right {
+        .delivery-input {
+            margin: 30px 0;
+            width: calc(100% - 30px);
+        }
+
+        input {
+            width: 100%;
+        }
+    }
+}

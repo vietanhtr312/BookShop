@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { addToCart, getCarts, udpateCart } from '~/services/cartService';
+import { addToCart, getCarts, udpateCart, deleteCart, deleteCarts } from '~/services/cartService';
 import { useAuth } from '~/hooks/useAuth';
 
 const CartContext = createContext();
@@ -41,8 +41,18 @@ const CartProvider = ({ children }) => {
         await fetchCarts();
     };
 
+    const handleDeleteCart = async (cartId) => {
+        await deleteCart(cartId);
+        await fetchCarts();
+    };
+
+    const handleDeleteCarts = async () => {
+        await deleteCarts(userId);
+        await fetchCarts();
+    }
+
     return (
-        <CartContext.Provider value={{ cartData, cartItem, setCartItem, handleAddToCart, handleUpdateCart }}>
+        <CartContext.Provider value={{ cartData, cartItem, setCartItem, handleAddToCart, handleUpdateCart, handleDeleteCart, handleDeleteCarts }}>
             {children}
         </CartContext.Provider>
     );

@@ -33,6 +33,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 });
 
 Route::get('/products', [ProductController::class, 'getProducts']);
+Route::get('/products/home', [ProductController::class, 'getHomeProducts']);
 Route::get('/product', [ProductController::class, 'getProduct']);
 
 //Variant
@@ -55,3 +56,4 @@ Route::get('/carts', [CartController::class,'getCarts']);
 Route::post('/cart/add', [CartController::class, 'addToCart']);
 Route::post('cart/update/{id}', [CartController::class,'updateCart']);
 Route::delete('/cart/delete/{id}', [CartController::class,'deleteCart']);
+Route::delete('/cart/deleteAll', [CartController::class,'deleteCarts']);

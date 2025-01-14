@@ -6,6 +6,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\QueryException;
+use Monolog\Handler\PushoverHandler;
 
 class ProductService
 {
@@ -151,5 +152,15 @@ class ProductService
                 'per_page' => $products->perPage(),
             ],
         ];
+    }
+
+    public function getHomeProducts()
+    {
+        $categories = Category::where('parent_id', null)->get();
+        $products = [];
+        foreach ($categories as $category) {
+            $products[$category->name] = Product::where('category_id', $category->id)->orderBy('created_at', 'desc')->limit(4)->get();
+        }
+        return $products;
     }
 }

@@ -21,19 +21,19 @@ const CartStep = ({ step = 4 }) => {
             <div className={cx('step-item', { active: step >= 2 })}>
                 <div className={cx('step-icon')}>
                     <div className={cx('step-circle')}>
-                        <FontAwesomeIcon icon={faBagShopping} />
+                        <FontAwesomeIcon icon={faCreditCard} />
                     </div>
                 </div>
-                <span className={cx('title')}>Đặt hàng</span>
+                <span className={cx('title')}>Thanh toán</span>
             </div>
 
             <div className={cx('step-item', { active: step >= 3 })}>
                 <div className={cx('step-icon')}>
                     <div className={cx('step-circle')}>
-                        <FontAwesomeIcon icon={faCreditCard} />
+                        <FontAwesomeIcon icon={faBagShopping} />
                     </div>
                 </div>
-                <span className={cx('title')}>Thanh toán</span>
+                <span className={cx('title')}>Xác nhận</span>
             </div>
 
             <div className={cx('step-item', { active: step >= 4 })}>

@@ -10,7 +10,7 @@ import Banner from '~/components/PageComp/Banner';
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 import { getCategories } from '~/services/categoryService';
-import { getProducts } from '~/services/productService';
+import { getProducts, getHomeProducts } from '~/services/productService';
 import LoadingPage from '../Loading';
 const cx = classNames.bind(styles);
 
@@ -34,16 +34,12 @@ const Home = () => {
 
     const fetchProductCategories = async () => {
         setLoading(true);
-        const tempProductCategories = [];
-        for (const item of categories) {
-            try {
-                const res = await getProducts('new', 1, item.id, true, 4);
-                tempProductCategories.push({ data: res.products.data, id: item.id });
-            } catch (err) {
-                console.log(err);
-            }
+        try {
+            const res = await getHomeProducts();
+            setProductCategories(res.products);
+        } catch (err) {
+            console.log(err);
         }
-        setProductCategories(tempProductCategories);
         setLoading(false);
     }
 
@@ -102,7 +98,7 @@ const Home = () => {
                                         <div className={cx('categories-item')}>
                                             <h3>{category.name}</h3>
                                         </div>
-                                        <ProductList data={productCategories.length > 0 ? productCategories.filter((item) => item.id === category.id)[0]?.data : []}></ProductList>
+                                        <ProductList data={productCategories[`${category.name}`]}></ProductList>
                                     </div>
                                 )
 

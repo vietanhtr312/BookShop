@@ -105,3 +105,16 @@ export const getProducts = async (type = 'new', page = 1, categoryId = null, var
         console.log('Lỗi lấy ds sản phẩm: ', error);
     }
 };
+
+export const getHomeProducts = async () => {
+    try {
+        const response = await axios.get('/api/products/home');
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            throw new Error(`Lỗi lấy ds sản phẩm: ${response.statusText}`);
+        }
+    } catch (error) {
+        console.log('Lỗi lấy ds sản phẩm: ', error);
+    }
+}

@@ -107,7 +107,7 @@ const Products = () => {
         setTimeout(() => {
             setLoading(false);
             setDone(true);
-        }, !done ? 1500 : 0);
+        }, !done ? 1000 : 0);
     }
 
     useEffect(() => {

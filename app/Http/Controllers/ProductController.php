@@ -73,6 +73,15 @@ class ProductController extends Controller
         ], 200);
     }
 
+    public function getHomeProducts(Request $request) {
+        $products = $this->productService->getHomeProducts();
+
+        return response()->json([
+            'message' => 'Lấy thành công danh sách sản phẩm',
+            'products' => $products
+        ], 200);
+    }
+
     public function getProduct(Request $request) {
         $id = $request->query('id');
         $variants = $request->query('variants') ?? false;

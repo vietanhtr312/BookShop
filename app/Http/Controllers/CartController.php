@@ -62,6 +62,16 @@ class CartController extends Controller
       ], 200);
     }
 
+    public function deleteCarts(Request $request)
+    {
+        $userId = $request->query('user_id');
+        $message = $this->cartService->deleteCarts($userId);
+
+        return response()->json([
+            'message' => $message
+        ], 200);
+    }
+
 
 
 
