@@ -1,7 +1,7 @@
 @use "header";
 .wrapper {
     height: calc(var(--header-height) - 10px);
-    background-image: var(--cl-primary);
+    background-color: var(--primary);
     width: 100%;
 }
 

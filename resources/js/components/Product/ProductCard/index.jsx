@@ -24,7 +24,7 @@ const ProductCard = ({product}) => {
                     </ul>
                 </div>
                 <div className={cx('featured-item-text')}>
-                    <h6>{product?.name}</h6>
+                    <div className={cx('item-name')}><h6>{product?.name}</h6></div>
                     <h5>{formatPrice(product?.price)}</h5>
                 </div>
             </div>

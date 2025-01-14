@@ -38,11 +38,13 @@ Route::get('/products/home', [ProductController::class, 'getHomeProducts']);
 Route::get('/product', [ProductController::class, 'getProduct']);
 
 //Variant
-Route::post('/variant/create', [VariantController::class, 'createVariant']);
-Route::post('variant/update/{id}', [VariantController::class,'updateVariant']);
-Route::delete('/variant/delete/{id}', [VariantController::class,'deleteVariant']);
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+    Route::post('/variant/create', [VariantController::class, 'createVariant']);
+    Route::post('variant/update/{id}', [VariantController::class, 'updateVariant']);
+    Route::delete('/variant/delete/{id}', [VariantController::class, 'deleteVariant']);
+});
 Route::get('/variants', [VariantController::class, 'getVariants']);
-Route::get('/variant', [VariantController::class,'getVariant']);
+Route::get('/variant', [VariantController::class, 'getVariant']);
 
 //Category
 Route::get('/category', [CategoryController::class, 'getCategory']);
@@ -53,12 +55,18 @@ Route::get('/copy', [CopyController::class, 'getCopy']);
 Route::get('/copies', [CopyController::class, 'index']);
 
 //Cart
-Route::get('/carts', [CartController::class,'getCarts']);
+Route::get('/carts', [CartController::class, 'getCarts']);
 Route::post('/cart/add', [CartController::class, 'addToCart']);
-Route::post('cart/update/{id}', [CartController::class,'updateCart']);
-Route::delete('/cart/delete/{id}', [CartController::class,'deleteCart']);
-Route::delete('/cart/deleteAll', [CartController::class,'deleteCarts']);
+Route::post('cart/update/{id}', [CartController::class, 'updateCart']);
+Route::delete('/cart/delete/{id}', [CartController::class, 'deleteCart']);
+Route::delete('/cart/deleteAll', [CartController::class, 'deleteCarts']);
 
 //Order
-Route::post('/order/create', [OrderController::class,'createOrder']);
-Route::get('/orders', [OrderController::class,'getOrders']);
+Route::post('/order/create', [OrderController::class, 'createOrder']);
+Route::get('/order/{id}', [OrderController::class, 'getOrderById']);
+Route::get('/userOrders', [OrderController::class, 'getUserOrders']);
+
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+    Route::get('/orders', [OrderController::class, 'getOrders']);
+    Route::put('/order/confirm/{id}', [OrderController::class, 'confirmOrder']);
+});

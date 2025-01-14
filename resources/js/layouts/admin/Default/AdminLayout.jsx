@@ -33,9 +33,20 @@ const ITEMS = [
         ],
     },
     {
-        type: 'customers',
+        type: 'orders',
         title: 'Đơn hàng',
-        to: '/admin/orders',
+        children: [
+            {
+                type: 'order_list',
+                title: 'Danh sách',
+                to: config.routes.admin.orderList,
+            },
+        ],
+    },
+    {
+        type: 'customers',
+        title: 'Khách hàng',
+        to: '/admin/users',
     },
     {
         type: 'revenue',

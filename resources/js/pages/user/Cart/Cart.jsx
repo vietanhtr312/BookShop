@@ -30,6 +30,7 @@ const Cart = () => {
 
         const order = {
             user_id: userId,
+            user_name: paymentInfo.name,
             payment_method: paymentInfo.payment,
             shipping_address: paymentInfo.deliveryAddress,
             shipping_phone: paymentInfo.phone,

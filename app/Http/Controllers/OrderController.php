@@ -32,11 +32,42 @@ class OrderController extends Controller
 
     public function getOrders()
     {
-        $orders = $this->orderService->getOrders();
+        $perPage = request()->get('per_page', 10);
+        $orders = $this->orderService->getOrders($perPage);
 
         return response()->json([
             'message' => 'Lấy danh sách order thành công',
             'orders' => $orders,
+        ], 200);
+    }
+
+    public function getUserOrders() {
+        $userId = request()->user_id;
+        $orders = $this->orderService->getUserOrders($userId);
+
+        return response()->json([
+            'message' => 'Lấy danh sách order thành công',
+            'orders' => $orders,
+        ], 200);
+    }
+
+    public function getOrderById($id)
+    {
+        $order = $this->orderService->getOrderById($id);
+
+        return response()->json([
+            'message' => 'Lấy order thành công',
+            'order' => $order,
+        ], 200);
+    }
+
+    public function confirmOrder($id)
+    {
+        $order = $this->orderService->confirmOrder($id);
+
+        return response()->json([
+            'message' => 'Xác nhận order thành công',
+            'order' => $order,
         ], 200);
     }
 }

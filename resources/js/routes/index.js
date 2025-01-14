@@ -13,6 +13,7 @@ const publicRoutes = [
     { path: config.routes.user.productSearchList, component: pages.user.Products, layout: layouts.user.default },
     { path: config.routes.user.productDetail, component: pages.user.ProductDetail, layout: layouts.user.default },
     { path: config.routes.user.cart, component: pages.user.Cart, layout: layouts.user.default },
+    { path: config.routes.user.order, component: pages.user.Order, layout: layouts.user.default },
 
     
 ];
@@ -21,6 +22,8 @@ const privateRoutes = [
     { path: config.routes.admin.productList, component: pages.admin.AdminProductList, role: 'admin' },
     { path: config.routes.admin.productDetail, component: pages.admin.AdminProductDetail, role: 'admin' },
     { path: config.routes.admin.productCreate, component: pages.admin.AdminProductCreate, role: 'admin' },
+    { path: config.routes.admin.orderList, component: pages.admin.OrderList, role: 'admin' },
+    { path: config.routes.admin.orderDetail, component: pages.admin.OrderDetail, role: 'admin' },
 
 ];
 

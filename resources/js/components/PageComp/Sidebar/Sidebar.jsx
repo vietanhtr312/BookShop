@@ -12,7 +12,7 @@ import {
     faDollarSign,
     faHouse,
     faTableCells,
-    faTachometerAlt,
+    faScroll,
     faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './Sidebar.module.scss';
@@ -35,6 +35,10 @@ const makeIcon = (type) => {
             return <FontAwesomeIcon icon={faUsers} />;
         case 'revenue':
             return <FontAwesomeIcon icon={faDollarSign} />;
+        case 'orders':
+            return <FontAwesomeIcon icon={faScroll} />;
+        case 'order_list':
+            return <FontAwesomeIcon icon={faTableCells} />;
     }
 };
 

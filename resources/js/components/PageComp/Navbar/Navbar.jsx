@@ -60,10 +60,10 @@ function Navbar({ ...props }) {
                             <span>{user.name}</span>
                             <ul >
                                 <li><Link to={'/'}>Tài khoản của tôi</Link></li>
-                                {user.role === 'admin' ? <li><Link to="/admin/products">Admin</Link></li> :
+                                {user.role === 'admin' ? <li><Link to="/admin/products">Quản lý cửa hàng</Link></li> :
                                     <>
                                         <li><Link to="">Địa chỉ</Link></li>
-                                        <li><Link to="">Đơn mua</Link></li>
+                                        <li><Link to="/orders">Đơn mua</Link></li>
                                     </>
                                 }
                                 <li onClick={() => {

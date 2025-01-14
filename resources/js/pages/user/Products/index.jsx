@@ -112,7 +112,7 @@ const Products = () => {
 
     useEffect(() => {
         fetchProducts();
-    }, [ categories, categoryId, sortType, changePrice, currentPage, search]);
+    }, [categories, categoryId, sortType, changePrice, currentPage, search]);
 
     const handleChangeCategory = (id) => {
         setCategoryId(id);
@@ -191,6 +191,7 @@ const Products = () => {
                                     {!loading && products.length === 0 && <div className={cx('no-products')}>Không có sản phẩm nào</div>}
                                     {!loading && products.length > 0 &&
                                         <>
+                                           {search && <h3 className={cx('search-result')}>Kết quả tìm kiếm: "{search}"</h3>}
                                             <div className={cx('product-list', "row")}>
                                                 {products.length > 0 && products.map((product, index) => (
                                                     <div className={cx("col l-4 m-4 c-12")} key={index}>

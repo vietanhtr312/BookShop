@@ -39,8 +39,38 @@ class OrderService
         }
     }
 
-    public function getOrders()
+    public function getOrders($perPage)
     {
-        return OrderResource::collection(Order::all());
+        $orders = Order::query();
+        $orders = $orders->paginate($perPage);
+        return [
+            'data' => OrderResource::collection($orders),
+            'meta' => [
+                'current_page' => $orders->currentPage(),
+                'last_page' => $orders->lastPage(),
+                'total' => $orders->total(),
+                'per_page' => $orders->perPage(),
+            ],
+        ];
+    }
+
+    public function getUserOrders($userId)
+    {
+        $orders = Order::where('user_id', $userId)->get();
+        return OrderResource::collection($orders);
+    }
+
+    public function getOrderById($id)
+    {
+        return new OrderResource(Order::find($id));
+    }
+
+    public function confirmOrder($id)
+    {
+        $order = Order::find($id);
+        $order->status = 'confirmed';
+        $order->shipping_status = 'shipping';
+        $order->save();
+        return new OrderResource($order);
     }
 }

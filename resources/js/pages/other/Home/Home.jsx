@@ -78,7 +78,7 @@ const Home = () => {
                         {categories.length > 0 && categories.map((item, index) => {
                             return (
                                 <Link to={`/products/${item.id}`} className={cx('slider-item')} key={index}>
-                                    <img src={item?.images ?? images.cat_1} alt={item?.name} />
+                                    <img src={item?.image ?? images.cat_1} alt={item?.name} />
                                     <p>{item?.name}</p>
                                 </Link>
                             )

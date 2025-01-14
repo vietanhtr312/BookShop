@@ -7,7 +7,7 @@
 .head,
 .row {
     width: 100%;
-    min-height: 40px;
+    min-height: 60px;
     max-height: 110px;
     display: flex;
     align-items: center;
@@ -35,7 +35,7 @@
 }
 
 .avatar {
-    width: 150px;
+    width: 200px;
     display: flex;
     justify-content: center;
 
@@ -47,7 +47,13 @@
 }
 
 .name {
-    flex: 1;
+    width: 15%;
+    text-align: center;
+}
+
+.ship {
+    width: 15%;
+    text-align: center;
 }
 
 .price {
@@ -61,7 +67,7 @@
 }
 
 .created-time {
-    width: 10%;
+    width: 15%;
     text-align: center;
 }
 

@@ -4,6 +4,8 @@ const routes = {
         productList: '/admin/products',
         productDetail: '/admin/product/:id',
         productCreate: '/admin/product/create',
+        orderList: '/admin/orders',
+        orderDetail: '/admin/order/:id',
     },
 
     user: {
@@ -13,6 +15,7 @@ const routes = {
         productSearchList: '/products?search=:search',
         productDetail: '/product/:productId/:variantId',
         cart: '/cart',
+        order: '/orders',
     },
 
     other: {

@@ -24,6 +24,7 @@ class OrderRequest extends FormRequest
         return [
             //
             'user_id' => 'required|exists:users,id',
+            'user_name' => 'required|string',
             'payment_method' => 'required|string',
             'shipping_address' => 'required|string',
             'shipping_phone' => 'required|string',

@@ -41,6 +41,18 @@ const ProductDetail = () => {
     const [loading, setLoading] = useState(true);
     const [breadcrumb, setBreadcrumb] = useState([]);
 
+    const fetchSimilarProduct = async () => {
+        // console.log('product: ', product);
+        try {
+            const response = await getProducts('new', 1, product.category_id);
+            setSimilar(response.products.data);
+        } catch (error) {
+            console.log('Lỗi fetch dữ liệu sản phẩm: ', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -53,19 +65,6 @@ const ProductDetail = () => {
             } catch (error) {
                 console.log('Lỗi fetch dữ liệu sản phẩm: ', error);
             } finally {
-                setLoading(false);
-            }
-        };
-
-        const fetchSimilarProduct = async () => {
-            try {
-                setLoading(true);
-                const response = await getProducts('new', 1, product.category_id);
-                setSimilar(response.products.data);
-            } catch (error) {
-                console.log('Lỗi fetch dữ liệu sản phẩm: ', error);
-            } finally {
-                setLoading(false);
             }
         };
 
@@ -75,7 +74,6 @@ const ProductDetail = () => {
         };
 
         fetchProduct();
-        fetchSimilarProduct();
         fetchCopies();
         window.scrollTo(0, 0);
     }, [productId]);
@@ -89,12 +87,16 @@ const ProductDetail = () => {
             } catch (error) {
                 console.log('Lỗi fetch dữ liệu biến thể: ', error);
             } finally {
-                setLoading(false);
             }
         };
 
         fetchVariant();
     }, [variantId]);
+
+    useEffect(() => {
+        if (product.id)
+            fetchSimilarProduct();
+    }, [product]);
 
     return (
         <Content breadcrumb={breadcrumb}>

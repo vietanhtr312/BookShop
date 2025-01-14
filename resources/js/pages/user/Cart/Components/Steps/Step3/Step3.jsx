@@ -19,7 +19,7 @@ const Step3 = ({ cartData, paymentInfo }) => {
                                 return (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
-                                        <td><img src={item?.variant?.images[0]} alt="" /></td>
+                                        <td><img src={item?.variant?.images[item.variant.images.length - 1]} alt="" /></td>
                                         <td><p>{item?.variant?.product?.name} - {item?.variant?.copy_name}</p></td>
                                         <td className={cx('quantity')}>x {item?.quantity}</td>
                                     </tr>
