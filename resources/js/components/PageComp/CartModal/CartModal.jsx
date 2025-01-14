@@ -23,7 +23,7 @@ const CartModal = ({  }) => {
                                 <div key={cart?.id}>
                                     <div className={cx('cart-modal-item')}>
                                         <div className={cx('item-img')}>
-                                            <img src={cart?.variant?.images ? cart?.variant?.images[0] : images.prod1} alt={cart.title} />
+                                            <img src={cart?.variant?.images ? cart?.variant?.images[cart.variant.images.length-1] : images.prod1} alt={cart.title} />
                                         </div>
                                         <div className={cx('item-info')}>
                                             <h6>{cart?.variant?.product?.name} - {cart?.variant?.copy_name}</h6>

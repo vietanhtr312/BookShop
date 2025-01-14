@@ -16,6 +16,7 @@ class CartService
         try {
             $cart = Cart::where('variant_id', $data['variant_id'])
                 ->where('user_id', $data['user_id'])
+                ->where('status', 0)
                 ->first();
             if ($cart) {
                 $cart->quantity += $data['quantity'];
@@ -67,12 +68,11 @@ class CartService
         return 'Đã xóa thành công giỏ hàng';
     }
 
-
-
-
     public function getCarts($userId)
     {
-        $carts = Cart::where('user_id', $userId)->get();
+        $carts = Cart::where('user_id', $userId)
+            ->where('status', 0)
+            ->get();
         $total = $carts->sum(function ($cart) {
             $price = floatval($cart->variant->product->price);
             return $cart->quantity * $price;

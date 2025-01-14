@@ -50,6 +50,7 @@ function Step1({ onSubmit, next = false, setNext = () => { }, setEmptyCart }) {
                 </div>
         )
     }
+    setEmptyCart(false);
 
     return (
         <div>
@@ -77,7 +78,7 @@ function Step1({ onSubmit, next = false, setNext = () => { }, setEmptyCart }) {
                                                 return (
                                                     <tr key={index}>
                                                         <td>{index + 1}</td>
-                                                        <td><img src={item?.variant?.images[0]} alt="" /></td>
+                                                        <td><img src={item?.variant?.images[item.variant.images.length - 1]} alt="" /></td>
                                                         <td><p>{item?.variant?.product?.name} - {item?.variant?.copy_name}</p></td>
                                                         <td className={cx('price')}><p>{formatPrice(item?.variant?.product?.price)}</p></td>
                                                         <td className={cx('quantity')}><QuantityButton cartId={item.id} quantity={item?.quantity} /></td>

@@ -5,9 +5,12 @@ import CartStep from './Components/CartStep';
 import Step1 from './Components/Steps/Step1';
 import Step2 from './Components/Steps/Step2';
 import Step3 from './Components/Steps/Step3';
+import Step4 from './Components/Steps/Step4';
 import { OutInTransition } from '~/animations/Transition';
 import ActionsBtns from './Components/ActionBtns';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { createOrder } from '~/services/orderService';
+import { useCart } from '~/hooks/useCart';
 
 const cx = classNames.bind(styles);
 
@@ -18,23 +21,51 @@ const Cart = () => {
     const [paymentInfo, setPaymentInfo] = useState({});
     const [loading, setLoading] = useState(false);
     const [emptyCart, setEmptyCart] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const userId = localStorage.getItem('userId');
+    const { fetchCarts } = useCart();
+
+    const handleCreate = async () => {
+        setLoading(true);
+
+        const order = {
+            user_id: userId,
+            payment_method: paymentInfo.payment,
+            shipping_address: paymentInfo.deliveryAddress,
+            shipping_phone: paymentInfo.phone,
+            total_price: cartData.total,
+            total_quantity: cartData.count,
+            cart_ids: cartData.carts.map((cart) => cart.id),
+        }
+
+        // console.log(order);
+
+        const response = await createOrder(order);
+        setMessages((prev) => [...prev, response.message]);
+        await fetchCarts();
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        if (step === 4) handleCreate();
+    }, [step]);
 
     const handleSubmitCart = useCallback((c) => {
         setCartData(c);
         setStep(2);
     }, []);
-    // console.log(carts);
-
+    
     const handleSubmitPayment = useCallback((p) => {
         setPaymentInfo(p);
         setStep(3);
     }, []);
-    // console.log(payment);
+    // console.log(cartData);
+    // console.log(paymentInfo);
 
     return (
         <div className={cx('cart-page')}>
             <div className={cx('cart-left', 'grid wide')}>
-                { !emptyCart && <CartStep step={step} />}
+                {!emptyCart && <CartStep step={step} />}
                 <div className={cx('cart-content')}>
                     <OutInTransition state={step}>
                         {step === 1 ? (
@@ -51,13 +82,13 @@ const Cart = () => {
                                 setNext={setNext}
                             />
                         ) : step === 3 ? (
-                            <Step3 cartData={cartData} paymentInfo={paymentInfo}/>
-                        ) : (
-                            <> </>
+                            <Step3 cartData={cartData} paymentInfo={paymentInfo} />
+                        ) : step === 4 && (
+                            <Step4 loading={loading} messages={messages} />
                         )}
                     </OutInTransition>
                 </div>
-                {!emptyCart && <ActionsBtns step={step} setStep={setStep} setNext={setNext} />}
+                {!emptyCart && <ActionsBtns loading={loading} step={step} setStep={setStep} setNext={setNext} />}
             </div>
         </div>
     );

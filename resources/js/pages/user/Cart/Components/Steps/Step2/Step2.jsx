@@ -37,7 +37,7 @@ function Step2( {onSubmit, next, setNext} ) {
 
     useEffect(() => {
         if (next) {
-            onSubmit({payment, profile});
+            onSubmit({payment, name: `${profile.first_name} ${profile.last_name}`, phone: profile.phone, deliveryAddress: `${profile.address}, ${profile.ward}, ${profile.district}, ${profile.province}`});
             setNext(false);
         }
     }, [next]);
@@ -80,8 +80,8 @@ function Step2( {onSubmit, next, setNext} ) {
                                             <img src={images.momo} alt="payment-img" />
                                         </div>
                                         <div className={cx('method_payment-item')}>
-                                            <input name="method_payment" type="radio" id="method_payment_4" value="cash"
-                                                onChange={() => handlePayment("Tiền mặt")} checked={payment === "cash"} />
+                                            <input name="method_payment" type="radio" id="method_payment_4" value="Tiền mặt"
+                                                onChange={() => handlePayment("Tiền mặt")} checked={payment === "Tiền mặt"} />
                                             <label for="method_payment_4">Thu tiền tận nơi</label>
                                         </div>
                                     </form>

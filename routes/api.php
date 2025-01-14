@@ -8,6 +8,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\VariantController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -57,3 +58,7 @@ Route::post('/cart/add', [CartController::class, 'addToCart']);
 Route::post('cart/update/{id}', [CartController::class,'updateCart']);
 Route::delete('/cart/delete/{id}', [CartController::class,'deleteCart']);
 Route::delete('/cart/deleteAll', [CartController::class,'deleteCarts']);
+
+//Order
+Route::post('/order/create', [OrderController::class,'createOrder']);
+Route::get('/orders', [OrderController::class,'getOrders']);

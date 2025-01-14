@@ -1,0 +1,42 @@
+.create-order {
+    --loading-height: 120px;
+
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .messages,
+    .errors {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+        font-weight: var(--font-normal);
+    }
+
+    .messages {
+        color: var(--secondary);
+    }
+
+    .errors {
+        color: var(--error-color);
+    }
+
+    .done {
+        height: var(--loading-height);
+    }
+
+    .loading {
+        height: var(--loading-height);
+        display: flex;
+        align-items: center;
+        font-size: 80px;
+        color: var(--secondary);
+        animation: spinner 4s linear infinite;
+    }
+}

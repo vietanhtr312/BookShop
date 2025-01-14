@@ -7,7 +7,6 @@ const cx = classNames.bind(styles);
 
 const Step3 = ({ cartData, paymentInfo }) => {
     const carts = cartData.carts || [];
-    const delivery = paymentInfo.profile || {};
 
     return (
         <div className={cx('order')}>
@@ -40,9 +39,9 @@ const Step3 = ({ cartData, paymentInfo }) => {
                 </div>
                 <div className={cx('order-right-delivery')}>
                     <h3>Thông tin giao hàng</h3>
-                    <p>Tên: {delivery.first_name} {delivery.last_name}</p>
-                    <p>Điện thoại: {delivery.phone}</p>
-                    <p>Địa chỉ: {delivery.address}, {delivery.ward}, {delivery.district}, {delivery.province}</p>
+                    <p>Tên: {paymentInfo.name}</p>
+                    <p>Điện thoại: {paymentInfo.phone}</p>
+                    <p>Địa chỉ: {paymentInfo.deliveryAddress}</p>
                 </div>
             </div>
         </div>
