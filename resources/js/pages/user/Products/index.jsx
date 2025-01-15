@@ -131,6 +131,7 @@ const Products = () => {
         setCategoryId(null);
         navigate('/products');
     }
+    console.log(products);
 
     return (
         <>

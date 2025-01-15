@@ -82,6 +82,16 @@ class ProductController extends Controller
         ], 200);
     }
 
+    public function getSimilarProducts(Request $request) {
+        $id = $request->query('id');
+        $products = $this->productService->getSimilarProducts( $id );
+
+        return response()->json([
+            'message' => 'Lấy thành công danh sách sản phẩm tương tự',
+            'products' => $products
+        ], 200);
+    }
+
     public function getProduct(Request $request) {
         $id = $request->query('id');
         $variants = $request->query('variants') ?? false;

@@ -7,6 +7,7 @@ const publicRoutes = [
     { path: config.routes.other.home, component: pages.other.home, layout: layouts.user.default },
     { path: config.routes.other.login, component: pages.other.login, layout: layouts.other.noHeader },
     { path: config.routes.other.register, component: pages.other.register, layout: layouts.other.noHeader },
+    { path: config.routes.other.forbidden, component: pages.other.forbidden, layout: null },
 
     { path: config.routes.user.productList, component: pages.user.Products, layout: layouts.user.default },
     { path: config.routes.user.productCategoryList, component: pages.user.Products, layout: layouts.user.default },

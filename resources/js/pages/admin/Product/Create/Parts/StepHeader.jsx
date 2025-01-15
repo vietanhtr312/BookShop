@@ -24,7 +24,7 @@ const StepHeader = ({ step, setStep }) => {
             </div>
             <div className={classes(2)} onClick={() => handleStepClick(step, 2)}>
                 <span className={cx('circle')}>2</span>
-                <span className={cx('step-name')}>Màu sắc và số lượng</span>
+                <span className={cx('step-name')}>Bản sách và số lượng</span>
             </div>
             <div className={classes(3)}>
                 <span className={cx('circle')}>3</span>

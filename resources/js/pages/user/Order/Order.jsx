@@ -17,6 +17,8 @@ const Order = () => {
     const [orders, setOrders] = useState({});
     const [carts, setCarts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [state, setState] = useState('pending');
+    const [stateOrder, setStateOrder] = useState({});
     const navigate = useNavigate();
     const userId = localStorage.getItem('userId');
 
@@ -46,23 +48,49 @@ const Order = () => {
         }
     }, [orders]);
 
+    useEffect(() => {
+        if (orders.length > 0) {
+            const tempStateOrder = {};
+            orders.map((order, index) => {
+                tempStateOrder[order.status] = {...tempStateOrder[order.status], orders: [...(tempStateOrder[order.status]?.orders || []), order]};
+            });
+            setStateOrder(tempStateOrder);
+        }
+    }, [orders]);
+    console.log('orders', stateOrder[`${state}`]?.orders);
+
+
     return (
         <>
             {!loading ? (
                 <div className={cx('order-page')}>
+                    <div className={cx('order-header', 'grid wide')}>
+                        <div className={cx('header-item', state === 'pending' ? 'active' : '')} onClick={() => setState('pending')}>
+                            <h3>Chờ xử lý</h3>
+                        </div>
+                        <div className={cx('header-item', state === 'confirmed' ? 'active' : '')} onClick={() => setState('confirmed')}>
+                            <h3>Đã xác nhận</h3>
+                        </div>
+                        <div className={cx('header-item', state === 'shipping' ? 'active' : '')} onClick={() => setState('shipping')}>
+                            <h3>Đang giao hàng</h3>
+                        </div>
+                        <div className={cx('header-item', state === 'delivered' ? 'active' : '')} onClick={() => setState('delivered')}>
+                            <h3>Đã giao hàng</h3>
+                        </div>
+                    </div>
                     <div className={cx('order', 'grid wide')}>
                         <div className={cx('order-left')}>
-                            {orders.length > 0 ? (
-                                orders.map((order, index) => {
+                            {stateOrder[`${state}`]?.orders ? (
+                                stateOrder[`${state}`]?.orders.map((order, index) => {
                                     return (
                                         <div className={cx('order-item')}>
                                             <h3>Thông tin đơn hàng {index + 1} - {order.status === 'pending' ? 'Chờ xử lý' : 'Đã xác nhận'}
-                                                {order.shipping_status === 'unshipped' ? '' : ' - Đang giao hàng'}
                                             </h3>
                                             <div className={cx('order-left-table')}>
                                                 <table>
                                                     <tbody>
-                                                        {carts[`${index}`]?.length > 0 && carts[`${index}`].map((item, index) => {
+                                                        {
+                                                        order.carts.length > 0 && order.carts.map((item, index) => {
                                                             return (
                                                                 <tr key={index}>
                                                                     <td>{index + 1}</td>
@@ -84,7 +112,7 @@ const Order = () => {
                             ) : (
                                 <div>
                                     <div className={cx('order--empty')}>
-                                        <img src={images.emptyCart} alt='empty cart' />
+                                        Không có đơn hàng nào
                                     </div>
                                 </div>
                             )}

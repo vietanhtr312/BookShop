@@ -157,10 +157,32 @@ class ProductService
     public function getHomeProducts()
     {
         $categories = Category::where('parent_id', null)->get();
-        $products = [];
+        $products = collect();
         foreach ($categories as $category) {
-            $products[$category->name] = Product::where('category_id', $category->id)->orderBy('created_at', 'desc')->limit(4)->get();
+            $tempProducts = Product::with('variants')->where('category_id', $category->id)->limit(4)->get();
+            $products = $products->merge($tempProducts);
         }
-        return $products;
+        return [
+            'data' => $products,
+        ];
+    }
+
+    public function getSimilarProducts($id)
+    {
+        $product = Product::find($id);
+        $searchPrefix = '%' . substr($product->name, 0, 3) . '%';
+        if ($product) {
+            $products = Product::with('variants')
+                ->where('name', 'like', $searchPrefix)->where('category_id', $product->category_id)->where('id', '!=', $id)
+                ->orWhere(function ($query) use ($product, $id) {
+                    $query->where('category_id', $product->category_id)
+                        ->where('id', '!=', $id);
+                })
+                ->orderByRaw("name LIKE ? DESC", [$searchPrefix])
+                ->limit(4)->get();
+            return [
+                'data' => $products,
+            ];
+        }
     }
 }

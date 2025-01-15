@@ -118,3 +118,16 @@ export const getHomeProducts = async () => {
         console.log('Lỗi lấy ds sản phẩm: ', error);
     }
 }
+
+export const getSimilarProducts = async (id) => {
+    try {
+        const response = await axios.get('/api/products/similar', { params: { id: id } });
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            throw new Error(`Lỗi lấy ds sản phẩm: ${response.statusText}`);
+        }
+    } catch (error) {
+        console.log('Lỗi lấy ds sản phẩm: ', error);
+    }
+}

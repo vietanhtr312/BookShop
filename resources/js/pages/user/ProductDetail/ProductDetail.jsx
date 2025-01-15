@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProduct, getProducts } from '~/services/productService';
+import { getProduct, getProducts, getSimilarProducts } from '~/services/productService';
 import classNames from 'classnames/bind';
 
 import styles from './ProductDetail.module.scss';
@@ -44,7 +44,7 @@ const ProductDetail = () => {
     const fetchSimilarProduct = async () => {
         // console.log('product: ', product);
         try {
-            const response = await getProducts('new', 1, product.category_id);
+            const response = await getSimilarProducts(productId);
             setSimilar(response.products.data);
         } catch (error) {
             console.log('Lỗi fetch dữ liệu sản phẩm: ', error);
@@ -75,6 +75,7 @@ const ProductDetail = () => {
 
         fetchProduct();
         fetchCopies();
+        fetchSimilarProduct();
         window.scrollTo(0, 0);
     }, [productId]);
 
@@ -93,10 +94,7 @@ const ProductDetail = () => {
         fetchVariant();
     }, [variantId]);
 
-    useEffect(() => {
-        if (product.id)
-            fetchSimilarProduct();
-    }, [product]);
+
 
     return (
         <Content breadcrumb={breadcrumb}>
@@ -105,7 +103,7 @@ const ProductDetail = () => {
                 <div className={cx('product-detail', 'grid wide')}>
                     <div className={cx('content')}>
                         <div className={cx('content-left')}>
-                            <ImageSlider images={variant.images ?? [images.noImage]} />
+                            <ImageSlider images={variant.images ? variant.images.reverse() : [images.noImage]} />
                         </div>
                         <div className={cx('content-right')}>
                             <InfoDetail product={product} variant={variant} copies={copies} />

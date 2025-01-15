@@ -36,7 +36,7 @@ const Home = () => {
         setLoading(true);
         try {
             const res = await getHomeProducts();
-            setProductCategories(res.products);
+            setProductCategories(res.products.data);
         } catch (err) {
             console.log(err);
         }
@@ -69,6 +69,8 @@ const Home = () => {
         }
     };
 
+    console.log(productCategories);
+
     return (
         <div className="grid wide">
             <Banner categories={categories}></Banner>
@@ -98,7 +100,7 @@ const Home = () => {
                                         <div className={cx('categories-item')}>
                                             <h3>{category.name}</h3>
                                         </div>
-                                        <ProductList data={productCategories[`${category.name}`]}></ProductList>
+                                        <ProductList data={productCategories ? productCategories.filter(item => item.category_id === category.id) : []}></ProductList>
                                     </div>
                                 )
 

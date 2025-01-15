@@ -35,6 +35,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
 Route::get('/products', [ProductController::class, 'getProducts']);
 Route::get('/products/home', [ProductController::class, 'getHomeProducts']);
+Route::get('/products/similar', [ProductController::class, 'getSimilarProducts']);
 Route::get('/product', [ProductController::class, 'getProduct']);
 
 //Variant
